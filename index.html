@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#C93D0F">
+  <meta name="description" content="Xianyu 咸鱼酒馆 — live music bar at Unit A-G-03 Union Tower, Jalan Desa Bakti, Taman Desa KL. Daily 6:30pm–2:30am, live from 9:30pm, strictly 18+. WhatsApp +60 12-652 2885.">
+  <meta property="og:site_name" content="Xianyu 咸鱼酒馆">
+  <meta property="og:title" content="Xianyu 咸鱼酒馆 · Live Music Bar in Taman Desa KL">
+  <meta property="og:description" content="Live music from 9:30pm at Union Tower, Taman Desa KL. Daily 6:30pm–2:30am, strictly 18+. WhatsApp +60 12-652 2885 to book.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://xianyukl.com/">
+  <meta property="og:image" content="https://xianyukl.com/assets/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Xianyu 咸鱼酒馆 · live music bar, Union Tower, Taman Desa KL · daily 6:30pm–2:30am · live from 9:30pm">
+  <meta property="og:locale" content="en_MY">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Xianyu 咸鱼酒馆 · Live Music Bar in Taman Desa KL">
+  <meta name="twitter:description" content="Live music from 9:30pm at Union Tower, Taman Desa KL. Daily 6:30pm–2:30am, strictly 18+. WhatsApp +60 12-652 2885 to book.">
+  <meta name="twitter:image" content="https://xianyukl.com/assets/og-card.jpg">
+  <link rel="canonical" href="https://xianyukl.com/">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <title>Xianyu 咸鱼酒馆 · Live Music Bar in Taman Desa KL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <style>
+@font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/instrument-sans-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+picture{display:contents}
+.week{padding-top:40px}
+.week-note{color:var(--ink-3);font-size:13.5px;margin-top:6px}
+.poster{display:block;margin-top:16px;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--line);max-width:30rem;background:var(--mist)}
+.poster img{display:block;width:100%;height:auto}
+.days{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;margin-top:16px;scrollbar-width:none}
+.days::-webkit-scrollbar{display:none}
+.day{flex:0 0 78%;max-width:22rem;scroll-snap-align:start;text-decoration:none;color:inherit}
+.day .poster{margin-top:8px}
+.day b{font-size:13px;font-weight:700;color:var(--ink-3)}
+.day.today b{color:var(--accent-text)}
+.day.today b::after{content:" · Tonight 今晚";}
+.proof{padding-top:48px}
+.rating{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:6px}
+.rating strong{font-size:2.4rem;font-weight:700;letter-spacing:-.03em;line-height:1}
+.rating .stars{color:var(--accent-text);font-size:1.1rem;letter-spacing:.05em}
+.rating small{color:var(--ink-3);font-size:13px}
+.quotes{display:grid;gap:10px;margin-top:18px;list-style:none;padding:0}
+.quotes li{border:1px solid var(--line);border-radius:var(--r-md);padding:16px;border-left:3px solid var(--rule)}
+.quotes q{display:block;font-size:15.5px;line-height:1.5;color:var(--ink);quotes:"“" "”"}
+.quotes cite{display:block;margin-top:8px;font-style:normal;font-size:12.5px;font-weight:600;color:var(--ink-3)}
+@media(min-width:760px){.quotes{grid-template-columns:repeat(3,1fr)}.days .day{flex-basis:15rem}main #week,main #proof{grid-column:1/-1}}
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+:root{--paper:#fff;--mist:#f6f8f7;--mist-deep:#eef2f0;--line:#e7ece9;--line-strong:#d6deda;
+--ink:#172923;--ink-2:#56675f;--ink-3:#64756f;--r-xs:6px;--r-sm:10px;--r-md:14px;--r-lg:18px;--gutter:1.25rem;--max:1040px;--hero:#fff;--on-hero:#172923;--on-hero-line:#d6deda;--on-hero-hover:#f6f8f7;--rule:#C93D0F;--btn:#C93D0F;--btn-deep:#C93D0F;--on-btn:#fff;--on-accent-btn:#fff;--accent:#C93D0F;--accent-text:#B8380E;--accent-soft:#FDF0EA;--accent-btn:#C93D0F;--logo-bg:#fff;}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:"Instrument Sans","Noto Sans SC",system-ui,sans-serif;font-size:15.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+[lang="zh"]{font-family:"Noto Sans SC","Instrument Sans",sans-serif}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:16px;top:-60px;z-index:40;background:var(--ink);color:#fff;font-weight:600;font-size:.85rem;padding:12px 18px;border-radius:var(--r-sm);text-decoration:none}
+.skip:focus{top:14px}
+.wrap{width:min(var(--max),100%);margin:0 auto;padding:0 var(--gutter) 110px}
+.top{background:var(--hero);color:var(--on-hero);margin:0 calc(50% - 50vw);padding:0 max(var(--gutter),calc(50vw - var(--max)/2 + var(--gutter)))}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:max(1.1rem,env(safe-area-inset-top)) 0 .5rem}
+.nav-brand{font-weight:700;font-size:.95rem;letter-spacing:-.01em;text-decoration:none}
+.nav-brand span,.nav-brand b{font-weight:500;opacity:.8}
+.nav-chip,.nav-live{font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:var(--r-xs);border:1px solid var(--on-hero-line);white-space:nowrap}
+.hero{display:grid;gap:0;padding:28px 0 40px;animation:up .5s ease both}
+.logo-orb,.logo-stage{width:132px;aspect-ratio:1;border-radius:var(--r-lg);overflow:hidden;background:var(--logo-bg);margin-bottom:26px;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.logo-orb img,.logo-stage img{display:block;width:100%;height:100%;object-fit:contain}
+.kicker,.place{font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--accent-text);margin-bottom:10px}
+h1{font-weight:700;font-size:clamp(2.3rem,10vw,3.6rem);line-height:1.02;letter-spacing:-.035em;max-width:14ch;margin-bottom:14px}
+h1 .soft{color:var(--accent-text)}
+h1::after{content:"";display:block;width:48px;height:3px;border-radius:2px;background:var(--rule);margin-top:18px}
+.top{border-bottom:1px solid var(--line)}
+.logo-orb,.logo-stage{border:1px solid var(--line)}
+.btn-primary{font-weight:700}
+.h1-brand{display:block;font-size:.95rem;font-weight:600;letter-spacing:0;margin-bottom:12px;opacity:.85}
+.zh-line{font-size:1.02rem;font-weight:500;opacity:.85;margin-bottom:26px}
+.cta-stack{display:grid;gap:10px;max-width:26rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;font-weight:600;font-size:15.5px;text-decoration:none;border-radius:var(--r-sm);transition:background-color .15s,color .15s,border-color .15s,transform .1s}
+.btn:active{transform:scale(.985)}
+.btn-primary{background:var(--btn);color:var(--on-btn);min-height:52px}
+.btn-primary:hover{background:var(--btn-deep)}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn-ghost{background:transparent;border:1px solid var(--on-hero-line);color:inherit;font-size:14.5px}
+.btn-ghost:hover{background:var(--on-hero-hover)}
+.hint{margin-top:12px;font-size:12.5px;opacity:.8;max-width:26rem}
+main .btn-ghost,.play-btn{border-color:var(--line-strong);color:var(--ink)}
+main .btn-ghost:hover{background:var(--mist)}
+.ribbon,.pulse{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;margin:24px 0 0;font-size:12.5px;color:var(--ink-3)}
+.ribbon span,.pulse span{background:var(--paper);padding:14px 12px;display:flex;flex-direction:column;gap:2px}
+.ribbon b,.pulse b{color:var(--ink);font-weight:700;font-size:15px;letter-spacing:-.01em}
+.policy-band{margin:16px 0 0;padding:14px 16px;border-radius:var(--r-md);background:var(--accent-soft);font-size:14px;color:var(--ink-2)}
+.policy-band strong{color:var(--ink);font-weight:600}
+.policy-band [lang="zh"]{display:block;margin-top:4px;font-size:13.5px}
+.block{padding:48px 0 0}
+.block-label{font-size:12px;font-weight:600;color:var(--accent-text);margin-bottom:6px}
+.block h2{font-size:clamp(1.6rem,6vw,2.1rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px}
+.block h2 em{font-style:normal;color:var(--ink-3);font-weight:500;font-size:.95rem;margin-left:10px;letter-spacing:0;font-family:"Noto Sans SC",sans-serif}
+.facts-list{list-style:none;padding:8px 0 0;font-size:15px}
+.facts-list li{padding:11px 0;border-bottom:1px solid var(--line);color:var(--ink-2)}
+.facts-list li:last-child{border-bottom:0}
+.facts-list a,.rule a,.faq a,.play-body a{color:var(--accent-text);font-weight:600;text-underline-offset:3px}
+.rule{list-style:none;padding:8px 0 0}
+.rule li{display:grid;grid-template-columns:7.5rem 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.rule li:last-child{border-bottom:0}
+.rule .k{color:var(--ink-3);font-size:13.5px;font-weight:500}
+.rule .v{font-weight:600;font-size:15px;line-height:1.45}
+.play-body{color:var(--ink-2);padding-top:6px}
+.play-body [lang="zh"]{display:block;margin-top:6px}
+.play-btn{width:100%;margin-top:16px;max-width:26rem}
+.contact-list{padding-top:8px}
+.contact-list a{display:flex;justify-content:space-between;align-items:center;min-height:52px;border-bottom:1px solid var(--line);text-decoration:none;font-weight:600}
+.contact-list a:last-child{border-bottom:0}
+.contact-list a span{color:var(--accent-text);font-size:13.5px}
+.faq details,.menu-text details{border-bottom:1px solid var(--line)}
+.faq summary,.menu-text summary{list-style:none;cursor:pointer;font-weight:600;font-size:15.5px;line-height:1.4;min-height:52px;padding:14px 2px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker,.menu-text summary::-webkit-details-marker{display:none}
+.faq summary .q{flex:1}
+.faq summary::after,.menu-text summary::after{content:"";flex:0 0 auto;width:8px;height:8px;margin:.45em 4px 0 auto;border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);transform:rotate(45deg);transition:transform .2s}
+.faq details[open] summary::after,.menu-text details[open] summary::after{transform:rotate(225deg)}
+.faq summary [lang="zh"],.menu-text summary [lang="zh"]{font-weight:500;color:var(--ink-3)}
+.faq p{color:var(--ink-2);font-size:15px;padding:0 2px 16px;animation:fade .2s ease both}
+.faq p [lang="zh"]{display:block;margin-top:8px}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-3)}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px var(--gutter) calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);border-top:1px solid var(--line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.sticky .btn{width:100%;display:flex;background:var(--accent-btn);color:var(--on-accent-btn)}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.menu-tile{display:block;text-decoration:none;color:inherit;overflow:hidden;border-radius:var(--r-md);border:1px solid var(--line);background:var(--paper);transition:border-color .15s,transform .1s}
+.menu-tile:hover{border-color:var(--line-strong)}
+.menu-tile:active{transform:scale(.985)}
+.menu-tile .thumb{display:block;width:100%;height:auto;background:var(--mist)}
+.menu-tile .meta{padding:12px 14px;border-top:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.menu-tile .meta strong{font-weight:600;font-size:15px}
+.menu-tile .meta strong [lang="zh"]{color:var(--ink-3);font-weight:500;font-size:12.5px;margin-left:6px}
+.menu-tile .meta .open{font-size:12.5px;font-weight:600;color:var(--accent-text);white-space:nowrap}
+.pager-wrap{margin-top:24px}
+.pager-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.pager-nav{display:flex;align-items:center;gap:8px}
+.pager-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;padding:0;border-radius:var(--r-sm);border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);cursor:pointer}
+.pager-btn svg{width:16px;height:16px}
+.pager-btn:hover:not(:disabled){background:var(--mist)}
+.pager-btn:disabled{opacity:.35;cursor:default}
+.pager-label{font-size:12.5px;font-weight:600;color:var(--ink-3)}
+.pager-count{font-size:12.5px;font-weight:600;color:var(--ink);white-space:nowrap}
+.pager{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.pager::-webkit-scrollbar{display:none}
+.pager .page{flex:0 0 88%;scroll-snap-align:center;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--line);background:var(--mist)}
+.pager .page img{display:block;width:100%;height:auto}
+.menu-note{margin-top:10px;font-size:12.5px;color:var(--ink-3)}
+.menu-text{margin-top:32px}
+.menu-text h3{font-size:1.15rem;font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+.menu-text>p{color:var(--ink-3);font-size:13.5px;margin-bottom:8px}
+.menu-text .sub{color:var(--ink-3);font-size:13.5px;padding:0 2px 6px}
+.menu-text ul{list-style:none;padding:0 2px 14px}
+.menu-text li{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:8px 0;font-size:15px;color:var(--ink-2);border-bottom:1px dashed var(--line)}
+.menu-text li:last-child{border-bottom:0}
+.menu-text li small{display:block;color:var(--ink-3);font-size:12.5px}
+.menu-text .p{flex:0 0 auto;text-align:right;font-weight:700;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.menu-text .p small{color:var(--accent-text);font-weight:600}
+@media(min-width:760px){
+ :root{--gutter:2rem}
+ .wrap{padding-bottom:56px}
+ .sticky{display:none}
+ .hero{grid-template-columns:minmax(0,1fr) 300px;column-gap:56px;padding:56px 0 72px;align-items:start}
+ .hero>*{grid-column:1}
+ .logo-orb,.logo-stage{grid-column:2;grid-row:1/span 7;width:300px;margin:0}
+ .ribbon,.pulse{margin-top:32px}
+ main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:56px}
+ main #menu,main #faq,main #facts{grid-column:1/-1}
+ .pager .page{flex-basis:38%}
+ .pager{scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
+ .pager::-webkit-scrollbar{display:block;height:6px}
+ .pager::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:999px}
+ .rule li{grid-template-columns:8.5rem 1fr}
+}
+@media(max-width:380px){.rule li{grid-template-columns:1fr;gap:4px}.ribbon,.pulse{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+.final{margin-top:48px;padding:28px 0 0;border-top:1px solid var(--line)}.final h2{font-size:clamp(1.6rem,6vw,2.1rem);font-weight:700;letter-spacing:-.03em;margin-bottom:14px}.final .btn{width:100%;max-width:26rem}.v .lk{color:var(--accent-text);font-weight:600;text-underline-offset:3px}.reel-wrap{margin:24px auto 0;max-width:24rem}.reel{border-radius:var(--r-md);overflow:hidden;border:1px solid var(--line);background:#111;aspect-ratio:4/5}.reel video{display:block;width:100%;height:100%;object-fit:cover}.reel-cap{margin-top:8px;font-size:12.5px;font-weight:600;color:var(--accent-text);text-align:center}.tabs{display:inline-flex;margin-top:16px;border:1px solid var(--line-strong);border-radius:var(--r-sm);overflow:hidden}.tab{appearance:none;border:0;background:var(--paper);color:var(--ink-2);font:inherit;font-weight:600;font-size:14.5px;min-height:44px;padding:0 20px;cursor:pointer}.tab+.tab{border-left:1px solid var(--line-strong)}.tab[aria-selected="true"]{background:var(--btn);color:var(--on-btn)}.pager-wrap[hidden]{display:none}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (max-width:759px){.logo-orb,.logo-stage{width:64px;margin-bottom:14px}}
+.proof-line{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;font-weight:600;margin:0 0 18px;padding:0;list-style:none}
+.proof-line li{display:flex;align-items:center;gap:6px}
+.proof-line a{color:inherit}
+.hero .hint{font-size:13px;opacity:.75;margin-top:8px}
+.week-stale .days{display:none}
+</style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BarOrPub",
+    "@id": "https://xianyukl.com/#venue",
+    "name": "Xianyu 咸鱼酒馆",
+    "alternateName": ["咸鱼酒馆", "咸鱼", "Xianyu", "Xian Yu KL"],
+    "description": "Laid-back live music bar at Union Tower, Taman Desa, Kuala Lumpur. Open daily 6:30pm–2:30am; live music starts at 9:30pm. Strictly 18+ at all hours.",
+    "url": "https://xianyukl.com/",
+    "image": "https://xianyukl.com/assets/logo.png",
+    "logo": "https://xianyukl.com/assets/logo.png",
+    "telephone": "+60126522885",
+    "currenciesAccepted": "MYR",
+    "smokingAllowed": false,
+    "acceptsReservations": "https://wa.me/60126522885",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Unit A-G-03, Union Tower, Jalan Desa Bakti, Taman Desa",
+      "addressLocality": "Kuala Lumpur",
+      "addressRegion": "Kuala Lumpur",
+      "postalCode": "58000",
+      "addressCountry": "MY"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 3.1069553,
+      "longitude": 101.6936032
+    },
+    "openingHours": "Mo-Su 18:30-02:30",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "18:30",
+        "closes": "02:30"
+      }
+    ],
+    "hasMenu": [
+      {
+        "@type": "Menu",
+        "name": "Xianyu 咸鱼酒馆 food menu (PDF)",
+        "url": "https://xianyukl.com/assets/menu/food.pdf",
+        "inLanguage": ["en", "zh"]
+      },
+      {
+        "@type": "Menu",
+        "name": "Xianyu 咸鱼酒馆 drinks menu (PDF)",
+        "url": "https://xianyukl.com/assets/menu/drinks.pdf",
+        "inLanguage": ["en", "zh"]
+      }
+    ],
+    "hasMap": "https://maps.app.goo.gl/R8NTbLVmtterrdzh8",
+    "sameAs": [
+      "https://instagram.com/xianyu.kl",
+      "https://maps.app.goo.gl/R8NTbLVmtterrdzh8"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I bring kids to Xianyu 咸鱼酒馆?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — Xianyu is strictly 18+ at all hours, so kids can't come in. 不可以，本店全程严格 18+，不接待小孩。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I smoke or vape at Xianyu 咸鱼酒馆?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "E-cigarettes and vapes are fine; cigarette smoking is not allowed inside. 电子烟 / vape 可以，场内不可抽烟。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a minimum spend at Xianyu 咸鱼酒馆?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Only sofas, and only on Fri, Sat and public-holiday-eve nights: RM500 for a sofa (up to 7 guests) or RM1,000 for a big sofa (up to 12). On weekdays and the public-holiday day itself there is no sofa minimum. 只有沙发有最低消费，且仅限周五、周六和公假前夕：普通沙发 RM500（最多 7 位），大沙发 RM1,000（最多 12 位）。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to book at Xianyu 咸鱼酒馆? Is there a deposit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Walk-ins are welcome any day; on Fri, Sat and public-holiday eves it's worth a WhatsApp ahead to +60 12-652 2885. No deposit — the table is held for 15 minutes past your booking time. Confirmations come in English; chat in English or Chinese. 每天都欢迎 walk-in；周五、周六和公假前夕建议先 WhatsApp 订位。无需订金，座位保留 15 分钟。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are Xianyu 咸鱼酒馆's opening hours, and when does the band play?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open 6:30pm–2:30am daily; live music starts at 9:30pm. The full week's lineup is posted on Instagram (@xianyu.kl) every Monday. 每天 6:30pm–2:30am 营业，现场 9:30pm 开始。每周一在 Instagram 公布整周演出安排。"
+        }
+      }
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GZSRML6N9E"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-GZSRML6N9E');
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href')||'';if(h.indexOf('wa.me')>-1||h.indexOf('api.whatsapp.com')>-1){try{gtag('event','whatsapp_click',{link_url:h,transport_type:'beacon'});}catch(x){}}else if(h.indexOf('maps.app.goo.gl')>-1||h.indexOf('google.com/maps')>-1||h.indexOf('waze.com')>-1){try{gtag('event','directions_click',{link_url:h,transport_type:'beacon'});}catch(x){}}},true);
+</script>
+<script>
+gtag('config','AW-18417939887');
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href')||'';if(h.indexOf('wa.me')>-1||h.indexOf('api.whatsapp.com')>-1){try{gtag('event','conversion',{send_to:'AW-18417939887/WlDNCIPR-6odEK_rrc5E',transport_type:'beacon'});}catch(x){}}},true);
+</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap">
+    <div class="top">
+    <nav class="nav" aria-label="Brand">
+      <a class="nav-brand" href="./" style="text-decoration:none">Xianyu <b>·</b> 咸鱼酒馆</a>
+    </nav>
+
+    <header class="hero">
+      <div class="logo-stage">
+        <picture><source type="image/webp" srcset="assets/img/logo-300.webp 300w, assets/img/logo-600.webp 600w" sizes="(min-width:760px) 300px, 132px"><img src="assets/img/logo-600.png" srcset="assets/img/logo-300.png 300w, assets/img/logo-600.png 600w" sizes="(min-width:760px) 300px, 132px" width="1563" height="1563" fetchpriority="high" decoding="async" alt="Xianyu 咸鱼酒馆 logo — 咸鱼 calligraphy with orange xián yu fish mark"></picture>
+      </div>
+      <h1><span class="h1-brand">Xianyu <span lang="zh">咸鱼酒馆</span> · Taman Desa KL</span>Your table for tonight’s live band.</h1>
+      <p class="zh-line">Live band every night 9:30pm–12:45am · open 6:30pm–2:30am<br><span lang="zh">每晚 9:30 开唱，和朋友喝到凌晨两点半。</span></p>
+      <ul class="proof-line"><li>★ 4.8 · 368 Google reviews</li><li><a href="https://waze.com/ul?q=Xian%20Yu%20KL" target="_blank" rel="noopener">📍 Union Tower, Taman Desa · Waze</a></li></ul>
+
+      <div class="cta-stack">
+        <a class="btn btn-primary" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book.%20Date%3A%20%20Time%3A%20%20Pax%3A" target="_blank" rel="noopener">Book my table on WhatsApp / 订位</a>
+        <p class="hint">No deposit · table held 15 min · walk-ins welcome too</p>
+      </div>
+    </header>
+    </div>
+
+    <figure class="reel-wrap">
+      <div class="reel"><video autoplay muted loop playsinline preload="metadata" poster="assets/video/xianyu-live-poster.jpg" width="640" height="800" aria-label="A live night at Xianyu 咸鱼酒馆, Taman Desa">
+        <source src="assets/video/xianyu-live.webm" type="video/webm">
+        <source src="assets/video/xianyu-live.mp4" type="video/mp4">
+      </video></div>
+      <figcaption class="reel-cap">A night at 咸鱼 · live from 9:30pm</figcaption>
+    </figure>
+
+    <main id="main">
+
+      <section class="block week" id="week" aria-labelledby="week-h">
+        <p class="block-label">This week</p>
+        <h2 id="week-h">Line-up, 19–25 Oct<em>本周阵容</em></h2>
+        <p class="week-note">Swipe for each night; new posters on <a href="https://instagram.com/xianyu.kl" target="_blank" rel="noopener">@xianyu.kl</a>.</p>
+        <div class="days" id="days">
+          <div class="day" data-date="2026-10-19"><b>Mon 19 Oct</b><div class="poster"><picture><source type="image/webp" srcset="assets/lineup/mon-19oct-540.webp 540w, assets/lineup/mon-19oct-1024.webp 1024w" sizes="(min-width:760px) 240px, 78vw"><img src="assets/lineup/mon-19oct-1024.jpg" srcset="assets/lineup/mon-19oct-540.jpg 540w, assets/lineup/mon-19oct-1024.jpg 1024w" sizes="(min-width:760px) 240px, 78vw" width="540" height="675" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 live line-up poster, Mon 19 October"></picture></div></div>
+          <div class="day" data-date="2026-10-20"><b>Tue 20 Oct</b><div class="poster"><picture><source type="image/webp" srcset="assets/lineup/tue-20oct-540.webp 540w, assets/lineup/tue-20oct-1024.webp 1024w" sizes="(min-width:760px) 240px, 78vw"><img src="assets/lineup/tue-20oct-1024.jpg" srcset="assets/lineup/tue-20oct-540.jpg 540w, assets/lineup/tue-20oct-1024.jpg 1024w" sizes="(min-width:760px) 240px, 78vw" width="540" height="675" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 live line-up poster, Tue 20 October"></picture></div></div>
+          <div class="day" data-date="2026-10-21"><b>Wed 21 Oct</b><div class="poster"><picture><source type="image/webp" srcset="assets/lineup/wed-21oct-540.webp 540w, assets/lineup/wed-21oct-1024.webp 1024w" sizes="(min-width:760px) 240px, 78vw"><img src="assets/lineup/wed-21oct-1024.jpg" srcset="assets/lineup/wed-21oct-540.jpg 540w, assets/lineup/wed-21oct-1024.jpg 1024w" sizes="(min-width:760px) 240px, 78vw" width="540" height="675" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 live line-up poster, Wed 21 October"></picture></div></div>
+          <div class="day" data-date="2026-10-22"><b>Thu 22 Oct</b><div class="poster"><picture><source type="image/webp" srcset="assets/lineup/thu-22oct-540.webp 540w, assets/lineup/thu-22oct-1024.webp 1024w" sizes="(min-width:760px) 240px, 78vw"><img src="assets/lineup/thu-22oct-1024.jpg" srcset="assets/lineup/thu-22oct-540.jpg 540w, assets/lineup/thu-22oct-1024.jpg 1024w" sizes="(min-width:760px) 240px, 78vw" width="540" height="675" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 live line-up poster, Thu 22 October"></picture></div></div>
+          <div class="day" data-date="2026-10-23"><b>Fri 23 Oct</b><div class="poster"><picture><source type="image/webp" srcset="assets/lineup/fri-23oct-540.webp 540w, assets/lineup/fri-23oct-1024.webp 1024w" sizes="(min-width:760px) 240px, 78vw"><img src="assets/lineup/fri-23oct-1024.jpg" srcset="assets/lineup/fri-23oct-540.jpg 540w, assets/lineup/fri-23oct-1024.jpg 1024w" sizes="(min-width:760px) 240px, 78vw" width="540" height="675" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 live line-up poster, Fri 23 October"></picture></div></div>
+          <div class="day" data-date="2026-10-24"><b>Sat 24 Oct</b><div class="poster"><picture><source type="image/webp" srcset="assets/lineup/sat-24oct-540.webp 540w, assets/lineup/sat-24oct-1024.webp 1024w" sizes="(min-width:760px) 240px, 78vw"><img src="assets/lineup/sat-24oct-1024.jpg" srcset="assets/lineup/sat-24oct-540.jpg 540w, assets/lineup/sat-24oct-1024.jpg 1024w" sizes="(min-width:760px) 240px, 78vw" width="540" height="675" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 live line-up poster, Sat 24 October"></picture></div></div>
+          <div class="day" data-date="2026-10-25"><b>Sun 25 Oct</b><div class="poster"><picture><source type="image/webp" srcset="assets/lineup/sun-25oct-540.webp 540w, assets/lineup/sun-25oct-1024.webp 1024w" sizes="(min-width:760px) 240px, 78vw"><img src="assets/lineup/sun-25oct-1024.jpg" srcset="assets/lineup/sun-25oct-540.jpg 540w, assets/lineup/sun-25oct-1024.jpg 1024w" sizes="(min-width:760px) 240px, 78vw" width="540" height="675" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 live line-up poster, Sun 25 October"></picture></div></div>
+        </div>
+      </section>
+
+      <section class="block" id="menu" aria-labelledby="menu-h">
+        <p class="block-label">Menu</p>
+        <h2 id="menu-h">Food &amp; drinks<em>菜单</em></h2>
+        <div class="tabs" role="tablist" aria-label="Menu"><button class="tab" role="tab" aria-selected="true" aria-controls="tab-food">Food <span lang="zh">餐单</span></button><button class="tab" role="tab" aria-selected="false" aria-controls="tab-drinks">Drinks <span lang="zh">酒单</span></button></div>
+        <div class="pager-wrap" id="tab-food" role="tabpanel" aria-label="Food menu">
+          <div class="pager-head">
+            <p class="pager-label">Swipe · tap a page for full size</p>
+            <div class="pager-nav">
+              <p class="pager-count" data-count="food">1 / 4</p>
+              <button class="pager-btn" type="button" data-prev="food" aria-label="Previous food menu page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+              <button class="pager-btn" type="button" data-next="food" aria-label="Next food menu page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+            </div>
+          </div>
+          <div class="pager" data-pager="food" aria-label="Food menu pages" tabindex="0">
+            <a class="page" href="assets/menu/food-p1.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/food-p1-480.webp 480w, assets/img/food-p1-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/food-p1-960.jpg" srcset="assets/img/food-p1-480.jpg 480w, assets/img/food-p1-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 food menu page 1 of 4"></picture></a>
+            <a class="page" href="assets/menu/food-p2.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/food-p2-480.webp 480w, assets/img/food-p2-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/food-p2-960.jpg" srcset="assets/img/food-p2-480.jpg 480w, assets/img/food-p2-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 food menu page 2 of 4"></picture></a>
+            <a class="page" href="assets/menu/food-p3.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/food-p3-480.webp 480w, assets/img/food-p3-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/food-p3-960.jpg" srcset="assets/img/food-p3-480.jpg 480w, assets/img/food-p3-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 food menu page 3 of 4"></picture></a>
+            <a class="page" href="assets/menu/food-p4.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/food-p4-480.webp 480w, assets/img/food-p4-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/food-p4-960.jpg" srcset="assets/img/food-p4-480.jpg 480w, assets/img/food-p4-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 food menu page 4 of 4"></picture></a>
+          </div>
+        </div>
+        <div class="pager-wrap" id="tab-drinks" role="tabpanel" aria-label="Drinks menu" hidden>
+          <div class="pager-head">
+            <p class="pager-label">Swipe · tap a page for full size</p>
+            <div class="pager-nav">
+              <p class="pager-count" data-count="drinks">1 / 4</p>
+              <button class="pager-btn" type="button" data-prev="drinks" aria-label="Previous drinks menu page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+              <button class="pager-btn" type="button" data-next="drinks" aria-label="Next drinks menu page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+            </div>
+          </div>
+          <div class="pager" data-pager="drinks" aria-label="Drinks menu pages" tabindex="0">
+            <a class="page" href="assets/menu/drinks-p1.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/drinks-p1-480.webp 480w, assets/img/drinks-p1-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/drinks-p1-960.jpg" srcset="assets/img/drinks-p1-480.jpg 480w, assets/img/drinks-p1-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 drinks menu page 1 of 4"></picture></a>
+            <a class="page" href="assets/menu/drinks-p2.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/drinks-p2-480.webp 480w, assets/img/drinks-p2-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/drinks-p2-960.jpg" srcset="assets/img/drinks-p2-480.jpg 480w, assets/img/drinks-p2-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 drinks menu page 2 of 4"></picture></a>
+            <a class="page" href="assets/menu/drinks-p3.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/drinks-p3-480.webp 480w, assets/img/drinks-p3-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/drinks-p3-960.jpg" srcset="assets/img/drinks-p3-480.jpg 480w, assets/img/drinks-p3-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 drinks menu page 3 of 4"></picture></a>
+            <a class="page" href="assets/menu/drinks-p4.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/drinks-p4-480.webp 480w, assets/img/drinks-p4-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/drinks-p4-960.jpg" srcset="assets/img/drinks-p4-480.jpg 480w, assets/img/drinks-p4-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 drinks menu page 4 of 4"></picture></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="block proof" id="proof" aria-labelledby="proof-h">
+        <p class="block-label">Guests say</p>
+        <h2 id="proof-h">Rated on Google<em>谷歌评价</em></h2>
+        <div class="rating"><strong>4.8</strong><span class="stars" aria-hidden="true">★</span><small>from 368 Google reviews · as of 23 Sep 2026</small></div>
+        <ul class="quotes">
+          <li><q>Staff were very friendly and welcoming, and the service was excellent.</q><cite>Lucas W. · Google review</cite></li>
+          <li><q>Nice environment, food delicious, staff also very manners and nice talk.</q><cite>Steve L. · Google review</cite></li>
+          <li><q lang="zh">今天人很多可是服务依然很好！</q><cite>peiqian y. · Google review</cite></li>
+        </ul>
+        <p class="week-note"><a href="https://maps.app.goo.gl/R8NTbLVmtterrdzh8" target="_blank" rel="noopener">Read all reviews on Google Maps</a></p>
+      </section>
+
+      <section class="block" id="visit" aria-labelledby="visit-h">
+        <p class="block-label">Visit</p>
+        <h2 id="visit-h">Plan your night<em>来之前先看</em></h2>
+        <ul class="rule">
+          <li><span class="k">Hours</span><span class="v">6:30pm–2:30am daily</span></li>
+          <li><span class="k">Address</span><span class="v">Unit A-G-03, Union Tower<br>Jalan Desa Bakti, Taman Desa, 58000 KL<br><a class="lk" href="https://maps.app.goo.gl/R8NTbLVmtterrdzh8" target="_blank" rel="noopener">Google Maps</a> · <a class="lk" href="https://waze.com/ul?q=Xian%20Yu%20KL" target="_blank" rel="noopener">Waze “Xian Yu KL”</a> · Grab “Xian Yu KL”</span></li>
+          <li><span class="k">Happy hour</span><span class="v">Sun–Thu before 8:30pm<br><span lang="zh">桶装买一送一</span> · Fri/Sat/PH eve excluded</span></li>
+          <li><span class="k">Age &amp; smoking</span><span class="v">Strictly 18+ at all hours, no kids · no cigarettes, vapes OK<br><span lang="zh">本店 18+，不接待小孩。不可抽烟，电子烟 / vape 可以。</span></span></li>
+          <li><span class="k">Booking</span><span class="v">Walk-ins welcome daily; WhatsApp ahead on Fri/Sat/PH eves · no deposit, table held 15 minutes</span></li>
+          <li><span class="k">Sofa min</span><span class="v">Fri/Sat/PH eves only<br>RM500 sofa · max 7 guests<br>RM1,000 big sofa · max 12 guests<br>Weekdays &amp; the PH day itself: no sofa minimum</span></li>
+          <li><span class="k">Payment</span><span class="v">All payment types &amp; split bills OK · prices exclude service charge &amp; SST · no private room</span></li>
+          <li><span class="k">Seats</span><span class="v">About 240</span></li>
+          <li><span class="k">Contact</span><span class="v"><a class="lk" href="tel:+60126522885">+60 12-652 2885</a> (call / WhatsApp) · <a class="lk" href="https://instagram.com/xianyu.kl" target="_blank" rel="noopener">@xianyu.kl</a></span></li>
+        </ul>
+      </section>
+
+      <section class="final" id="book" aria-labelledby="book-h">
+        <h2 id="book-h">Book your table <span lang="zh" style="font-weight:500;color:var(--ink-3);font-size:.6em">订位</span></h2>
+        <a class="btn btn-primary" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book.%20Date%3A%20%20Time%3A%20%20Pax%3A" target="_blank" rel="noopener">Book my table on WhatsApp / 订位</a>
+        <p class="hint">Include date, time &amp; pax. Confirmations come in English; chat in English or <span lang="zh">中文</span>.</p>
+      </section>
+    </main>
+
+    <footer>Xianyu 咸鱼酒馆 · Taman Desa, Kuala Lumpur</footer>
+  </div>
+  <div class="sticky">
+    <a class="btn btn-primary" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book.%20Date%3A%20%20Time%3A%20%20Pax%3A" target="_blank" rel="noopener">Book my table on WhatsApp / 订位</a>
+  </div>
+  <script>
+    document.querySelectorAll("[data-pager]").forEach(function (pager) {
+      var name = pager.getAttribute("data-pager");
+      var count = document.querySelector('[data-count="' + name + '"]');
+      var prev = document.querySelector('[data-prev="' + name + '"]');
+      var next = document.querySelector('[data-next="' + name + '"]');
+      var pages = pager.querySelectorAll(".page");
+      if (!count || !pages.length) return;
+      var step = function () {
+        var gap = parseFloat(getComputedStyle(pager).columnGap) || 10;
+        return pages[0].offsetWidth + gap;
+      };
+      var maxScroll = function () {
+        return pager.scrollWidth - pager.clientWidth;
+      };
+      var update = function () {
+        var i = Math.min(pages.length, Math.max(1, Math.round(pager.scrollLeft / step()) + 1));
+        count.textContent = i + " / " + pages.length;
+        if (prev) prev.disabled = pager.scrollLeft <= 1;
+        if (next) next.disabled = pager.scrollLeft >= maxScroll() - 1;
+      };
+      var go = function (dir) {
+        pager.scrollBy({ left: dir * step(), behavior: "smooth" });
+      };
+      if (prev) prev.addEventListener("click", function () { go(-1); });
+      if (next) next.addEventListener("click", function () { go(1); });
+      pager.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      pager.addEventListener("keydown", function (e) {
+        if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+        e.preventDefault();
+        go(e.key === "ArrowRight" ? 1 : -1);
+      });
+      // Map vertical wheel/trackpad to horizontal paging while over the pager.
+      // Deltas are accumulated and advance one snapped page at a time, because
+      // scroll-snap: mandatory re-snaps tiny scrollLeft nudges straight back.
+      var wheelAcc = 0, wheelLockUntil = 0;
+      pager.addEventListener("wheel", function (e) {
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+        var delta = e.deltaY;
+        if (e.deltaMode === 1) delta *= 32;
+        else if (e.deltaMode === 2) delta *= pager.clientWidth;
+        var canScroll = delta < 0 ? pager.scrollLeft > 0 : pager.scrollLeft < maxScroll() - 1;
+        if (!canScroll) { wheelAcc = 0; return; }
+        e.preventDefault();
+        var now = Date.now();
+        if (now < wheelLockUntil) return;
+        wheelAcc += delta;
+        if (Math.abs(wheelAcc) >= 60) {
+          go(wheelAcc > 0 ? 1 : -1);
+          wheelAcc = 0;
+          wheelLockUntil = now + 350;
+        }
+      }, { passive: false });
+      update();
+    });
+  </script>
+  <script>
+  (function(){var d=new Date(Date.now()+8*36e5).toISOString().slice(0,10),el=document.querySelector('.day[data-date="'+d+'"]');if(!el)return;el.classList.add("today");var c=document.getElementById("days");c.scrollLeft=el.offsetLeft-c.offsetLeft;})();
+  </script>
+  <script>
+  (function(){if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  document.documentElement.classList.add("js");var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}})},{rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll("main .block, .ribbon, .pulse, .policy-band").forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight){return;}el.classList.add("rv");io.observe(el);});})();
+  </script>
+  <script>
+  (function(){var tabs=document.querySelectorAll('.tab');tabs.forEach(function(t){t.addEventListener('click',function(){tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});var p=document.querySelector('#'+t.getAttribute('aria-controls')+' .pager');if(p){p.scrollLeft=0;p.dispatchEvent(new Event('scroll'));}});});})();
+  </script>
+<script>(function(){var d=document.querySelectorAll('#days .day[data-date]');if(!d.length)return;var last=d[d.length-1].getAttribute('data-date');var t=new Date(Date.now()+8*3600e3).toISOString().slice(0,10);if(last<t){var s=document.getElementById('week');s.classList.add('week-stale');var h=document.getElementById('week-h');h.innerHTML='Live band every night<em>每晚现场乐队</em>';var n=s.querySelector('.week-note')||document.createElement('p');n.className='week-note';n.innerHTML='Tonight\u2019s singer is posted daily on <a href="https://instagram.com/xianyu.kl" target="_blank" rel="noopener">@xianyu.kl</a>.';if(!n.parentNode)h.after(n);}else{d.forEach(function(x){if(x.getAttribute('data-date')===t){x.querySelector('b').textContent='Tonight \u00b7 '+x.querySelector('b').textContent;}});}})();</script>
+</body>
+</html>
