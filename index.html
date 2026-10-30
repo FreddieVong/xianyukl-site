@@ -300,6 +300,39 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-si
     ]
   }
   </script>
+<link rel="preload" as="image" href="assets/img/live-frame.jpg" fetchpriority="high"><link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-300.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-italic-600.woff2" crossorigin>
+<style>@font-face{font-family:"Fraunces";font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/fraunces-normal-300.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+2122,U+2212}
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:600;font-display:swap;src:url(assets/fonts/fraunces-italic-600.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+2122,U+2212}
+:root{--paper:#1f0f09;--mist:#2a150d;--mist-deep:#331a10;--line:#43251a;--line-strong:#5a3324;--ink:#f3f6f5;--ink-2:#cdd8d4;--ink-3:#a9b8b3;--accent-text:#F08A5D;--accent-soft:#2a150d;--rule:#C93D0F;--hero:#1f0f09;--on-hero:#f3f6f5;--logo-bg:#fff}
+html,body{background:#1f0f09;color:var(--ink)}
+h2{font-family:"Fraunces",Georgia,serif;font-weight:300;letter-spacing:-.01em}
+.cx-hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:22px 5vw 7vh;color:#fff;overflow:hidden;isolation:isolate}
+.cx-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;z-index:-2}
+video.cx-bg{opacity:0;transition:opacity .8s}video.cx-bg.on{opacity:1}
+.cx-hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,0) 28%,rgba(0,0,0,.15) 45%,#1f0f09 97%)}
+.cx-nav{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.cx-brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-family:"Fraunces",Georgia,serif;font-size:24px;white-space:nowrap}
+.cx-brand img{width:44px;height:44px;border-radius:50%;background:#fff;object-fit:contain;padding:3px}
+.cx-book{background:#fff;color:#172923;padding:10px 18px;border-radius:99px;text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap}
+.cx-copy{max-width:60rem}
+.cx-tonight{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.45);border:1px solid #C93D0F;color:#fff;border-radius:99px;padding:7px 14px;font-size:13.5px;text-decoration:none;margin-bottom:16px;backdrop-filter:blur(6px)}
+.cx-tonight:before{content:"";width:8px;height:8px;border-radius:50%;background:#C93D0F;box-shadow:0 0 0 4px #C93D0F44}
+.cx-kick{color:#F08A5D;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin:0 0 12px}
+.cx-hero h1{font-family:"Fraunces",Georgia,serif;font-weight:300;font-size:clamp(40px,6.6vw,96px);line-height:1;letter-spacing:-.02em;margin:0;max-width:12em;color:#fff}
+.cx-hero h1 i{font-weight:600;color:#F08A5D}
+.cx-sub{margin:16px 0 0;font-size:17px;color:#eef3f1}.cx-sub span{display:block;font-size:14px;opacity:.8;margin-top:4px}
+.cx-cta{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px}
+.cx-cta .btn{width:auto;padding:16px 28px;border-radius:99px}
+.cx-cta .hint{margin:0;color:#eef3f1;font-size:14px}
+.cx-facts{display:flex;flex-wrap:wrap;gap:6px 18px;list-style:none;padding:0;margin:18px 0 0;font-size:14px;color:#d9e3e0}.cx-facts a{color:inherit}
+.cx-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:8px 0 0}
+.cx-cards figure{margin:0;border-radius:18px;overflow:hidden;position:relative;background:#000}
+.cx-cards img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 35%}
+.cx-cards figcaption{position:absolute;left:0;right:0;bottom:0;padding:16px;color:#fff;font-weight:600;background:linear-gradient(transparent,rgba(0,0,0,.85))}
+.btn-primary{background:#C93D0F;color:#fff}
+.sticky{background:#1f0f09ee;border-top:1px solid var(--line)}
+@media(max-width:759px){.cx-cards{grid-template-columns:1fr 1fr}.cx-cards figure:first-child{grid-column:1/-1}.cx-cards figure:first-child img{aspect-ratio:16/10}.cx-hero{padding-bottom:4vh}.cx-cta .btn{width:100%;text-align:center}.cx-brand span{font-size:20px}}
+</style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZSRML6N9E"></script>
 <script>
@@ -314,35 +347,22 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <div class="wrap">
-    <div class="top">
-    <nav class="nav" aria-label="Brand">
-      <a class="nav-brand" href="./" style="text-decoration:none">Xianyu <b>·</b> 咸鱼酒馆</a>
-    </nav>
-
-    <header class="hero">
-      <div class="logo-stage">
-        <picture><source type="image/webp" srcset="assets/img/logo-300.webp 300w, assets/img/logo-600.webp 600w" sizes="(min-width:760px) 300px, 132px"><img src="assets/img/logo-600.png" srcset="assets/img/logo-300.png 300w, assets/img/logo-600.png 600w" sizes="(min-width:760px) 300px, 132px" width="1563" height="1563" fetchpriority="high" decoding="async" alt="Xianyu 咸鱼酒馆 logo — 咸鱼 calligraphy with orange xián yu fish mark"></picture>
-      </div>
-      <h1><span class="h1-brand">Xianyu <span lang="zh">咸鱼酒馆</span> · Taman Desa KL</span>Your table for tonight’s live band.</h1>
-      <p class="zh-line">Live band every night 9:30pm–12:45am · open 6:30pm–2:30am<br><span lang="zh">每晚 9:30 开唱，和朋友喝到凌晨两点半。</span></p>
-      <ul class="proof-line"><li>★ 4.8 · 368 Google reviews</li><li><a href="https://waze.com/ul?q=Xian%20Yu%20KL" target="_blank" rel="noopener">📍 Union Tower, Taman Desa · Waze</a></li></ul>
-
-      <div class="cta-stack">
-        <a class="btn btn-primary" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book.%20Date%3A%20%20Time%3A%20%20Pax%3A" target="_blank" rel="noopener">Book my table on WhatsApp / 订位</a>
-        <p class="hint">No deposit · table held 15 min · walk-ins welcome too</p>
-      </div>
-    </header>
+  <header class="cx-hero">
+    <img class="cx-bg" src="assets/img/live-frame.jpg" alt="" fetchpriority="high" decoding="async">
+    <video class="cx-bg" muted loop playsinline preload="none" aria-hidden="true" data-webm="assets/video/xianyu-live.webm" data-mp4="assets/video/xianyu-live.mp4"></video>
+    <nav class="cx-nav" aria-label="Brand"><a class="cx-brand" href="./"><img src="assets/img/logo-300.webp" width="44" height="44" alt=""><span>Xianyu</span></a><a class="cx-book" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book.%20Date%3A%20%20Time%3A%20%20Pax%3A" target="_blank" rel="noopener">Book a table</a></nav>
+    <div class="cx-copy">
+      <a class="cx-tonight" id="cx-tonight" href="#week" hidden>Tonight · live band from 9:30pm</a>
+      <p class="cx-kick">Taman Desa KL · live band nightly</p>
+      <h1>Your table for <i>tonight’s live band.</i></h1>
+      <p class="cx-sub">Live band 9:30pm–12:45am, every night · open 6:30pm–2:30am.<span lang="zh">每晚 9:30 开唱，和朋友喝到凌晨两点半。</span></p>
+      <div class="cx-cta"><a class="btn btn-primary" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book.%20Date%3A%20%20Time%3A%20%20Pax%3A" target="_blank" rel="noopener">Book my table on WhatsApp / 订位</a><p class="hint">No deposit · table held 15 min · walk-ins welcome too</p></div>
+      <ul class="cx-facts"><li>★ 4.8 · 368 Google reviews</li><li>Happy hour Sun–Thu before 8:30pm</li><li><a href="https://waze.com/ul?q=Xian%20Yu%20KL" target="_blank" rel="noopener">📍 Union Tower, Taman Desa · Waze</a></li></ul>
     </div>
+  </header>
+  <div class="wrap">
 
-    <figure class="reel-wrap">
-      <div class="reel"><video autoplay muted loop playsinline preload="metadata" poster="assets/video/xianyu-live-poster.jpg" width="640" height="800" aria-label="A live night at Xianyu 咸鱼酒馆, Taman Desa">
-        <source src="assets/video/xianyu-live.webm" type="video/webm">
-        <source src="assets/video/xianyu-live.mp4" type="video/mp4">
-      </video></div>
-      <figcaption class="reel-cap">A night at 咸鱼 · live from 9:30pm</figcaption>
-    </figure>
-
+    <section class="cx-cards" aria-label="A night here"><figure><picture><source type=image/webp srcset=assets/img/live-frame.webp><img src="assets/img/live-frame.jpg" loading="lazy" decoding="async" alt="Live band, 9:30pm–12:45am nightly"></picture><figcaption>Live band, 9:30pm–12:45am nightly</figcaption></figure><figure><picture><source type=image/webp srcset=assets/img/food-p1-480.webp><img src="assets/img/food-p1-480.jpg" loading="lazy" decoding="async" alt="Braised pork rice"></picture><figcaption>Braised pork rice</figcaption></figure><figure><picture><source type=image/webp srcset=assets/img/drinks-p2-480.webp><img src="assets/img/drinks-p2-480.jpg" loading="lazy" decoding="async" alt="Cocktails &amp; highballs"></picture><figcaption>Cocktails &amp; highballs</figcaption></figure></section>
     <main id="main">
 
       <section class="block week" id="week" aria-labelledby="week-h">
@@ -507,5 +527,10 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   (function(){var tabs=document.querySelectorAll('.tab');tabs.forEach(function(t){t.addEventListener('click',function(){tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});var p=document.querySelector('#'+t.getAttribute('aria-controls')+' .pager');if(p){p.scrollLeft=0;p.dispatchEvent(new Event('scroll'));}});});})();
   </script>
 <script>(function(){var d=document.querySelectorAll('#days .day[data-date]');if(!d.length)return;var last=d[d.length-1].getAttribute('data-date');var t=new Date(Date.now()+8*3600e3).toISOString().slice(0,10);if(last<t){var s=document.getElementById('week');s.classList.add('week-stale');var h=document.getElementById('week-h');h.innerHTML='Live band every night<em>每晚现场乐队</em>';var n=s.querySelector('.week-note')||document.createElement('p');n.className='week-note';n.innerHTML='Tonight\u2019s singer is posted daily on <a href="https://instagram.com/xianyu.kl" target="_blank" rel="noopener">@xianyu.kl</a>.';if(!n.parentNode)h.after(n);}else{d.forEach(function(x){if(x.getAttribute('data-date')===t){x.querySelector('b').textContent='Tonight \u00b7 '+x.querySelector('b').textContent;}});}})();</script>
+<script>
+(function(){var d=new Date(Date.now()+8*36e5).toISOString().slice(0,10),el=document.querySelector('.day[data-date="'+d+'"]'),t=document.getElementById("cx-tonight");if(el&&t){t.hidden=false;}
+window.addEventListener("load",function(){var v=document.querySelector("video.cx-bg"),n=navigator.connection||{};if(!v||!matchMedia("(min-width:760px)").matches||n.saveData||/2g|3g/.test(n.effectiveType||"")||matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+[["webm","video/webm"],["mp4","video/mp4"]].forEach(function(x){var s=document.createElement("source");s.src=v.dataset[x[0]];s.type=x[1];v.appendChild(s);});v.load();v.addEventListener("playing",function(){v.classList.add("on")});v.play().catch(function(){});});})();
+</script>
 </body>
 </html>
