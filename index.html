@@ -300,7 +300,7 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-si
     ]
   }
   </script>
-<link rel="preload" as="image" href="assets/img/live-frame.jpg" fetchpriority="high"><link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-300.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-italic-600.woff2" crossorigin>
+<link rel="preload" as="image" href="assets/video/xianyu-live-band-poster.jpg" media="(min-width:760px)" fetchpriority="high"><link rel="preload" as="image" href="assets/video/xianyu-live-m-poster.jpg" media="(max-width:759px)" fetchpriority="high"><link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-normal-300.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-italic-600.woff2" crossorigin>
 <style>@font-face{font-family:"Fraunces";font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/fraunces-normal-300.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+2122,U+2212}
 @font-face{font-family:"Fraunces";font-style:italic;font-weight:600;font-display:swap;src:url(assets/fonts/fraunces-italic-600.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F,U+2122,U+2212}
 :root{--paper:#1f0f09;--mist:#2a150d;--mist-deep:#331a10;--line:#43251a;--line-strong:#5a3324;--ink:#f3f6f5;--ink-2:#cdd8d4;--ink-3:#a9b8b3;--accent-text:#F08A5D;--accent-soft:#2a150d;--rule:#C93D0F;--hero:#1f0f09;--on-hero:#f3f6f5;--logo-bg:#fff}
@@ -308,7 +308,7 @@ html,body{background:#1f0f09;color:var(--ink)}
 h2{font-family:"Fraunces",Georgia,serif;font-weight:300;letter-spacing:-.01em}
 .cx-hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:22px 5vw 7vh;color:#fff;overflow:hidden;isolation:isolate}
 .cx-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;z-index:-2}
-video.cx-bg{opacity:0;transition:opacity .8s}video.cx-bg.on{opacity:1}
+@media(max-width:759px){.cx-bg{object-position:center 40%}}video.cx-bg{opacity:0;transition:opacity .8s}video.cx-bg.on{opacity:1}
 .cx-hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,0) 28%,rgba(0,0,0,.15) 45%,#1f0f09 97%)}
 .cx-nav{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .cx-brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-family:"Fraunces",Georgia,serif;font-size:24px;white-space:nowrap}
@@ -348,8 +348,8 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="cx-hero">
-    <img class="cx-bg" src="assets/img/live-frame.jpg" alt="" fetchpriority="high" decoding="async">
-    <video class="cx-bg" muted loop playsinline preload="none" aria-hidden="true" data-webm="assets/video/xianyu-live.webm" data-mp4="assets/video/xianyu-live.mp4"></video>
+    <picture><source media="(max-width:759px)" srcset="assets/video/xianyu-live-m-poster.jpg"><img class="cx-bg" src="assets/video/xianyu-live-band-poster.jpg" alt="" fetchpriority="high" decoding="async"></picture>
+    <video class="cx-bg" muted loop playsinline autoplay preload="metadata" aria-hidden="true" data-webm="assets/video/xianyu-live-band.webm" data-mp4="assets/video/xianyu-live-band.mp4" data-mwebm="assets/video/xianyu-live-m.webm" data-mmp4="assets/video/xianyu-live-m.mp4"></video>
     <nav class="cx-nav" aria-label="Brand"><a class="cx-brand" href="./"><img src="assets/img/logo-300.webp" width="44" height="44" alt=""><span>Xianyu</span></a><a class="cx-book" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book.%20Date%3A%20%20Time%3A%20%20Pax%3A" target="_blank" rel="noopener">Book a table</a></nav>
     <div class="cx-copy">
       <a class="cx-tonight" id="cx-tonight" href="#week" hidden>Tonight · live band from 9:30pm</a>
@@ -528,8 +528,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <script>(function(){var d=document.querySelectorAll('#days .day[data-date]');if(!d.length)return;var last=d[d.length-1].getAttribute('data-date');var t=new Date(Date.now()+8*3600e3).toISOString().slice(0,10);if(last<t){var s=document.getElementById('week');s.classList.add('week-stale');var h=document.getElementById('week-h');h.innerHTML='Live band every night<em>每晚现场乐队</em>';var n=s.querySelector('.week-note')||document.createElement('p');n.className='week-note';n.innerHTML='Tonight\u2019s singer is posted daily on <a href="https://instagram.com/xianyu.kl" target="_blank" rel="noopener">@xianyu.kl</a>.';if(!n.parentNode)h.after(n);}else{d.forEach(function(x){if(x.getAttribute('data-date')===t){x.querySelector('b').textContent='Tonight \u00b7 '+x.querySelector('b').textContent;}});}})();</script>
 <script>
 (function(){var d=new Date(Date.now()+8*36e5).toISOString().slice(0,10),el=document.querySelector('.day[data-date="'+d+'"]'),t=document.getElementById("cx-tonight");if(el&&t){t.hidden=false;}
-window.addEventListener("load",function(){var v=document.querySelector("video.cx-bg"),n=navigator.connection||{};if(!v||!matchMedia("(min-width:760px)").matches||n.saveData||/2g|3g/.test(n.effectiveType||"")||matchMedia("(prefers-reduced-motion:reduce)").matches)return;
-[["webm","video/webm"],["mp4","video/mp4"]].forEach(function(x){var s=document.createElement("source");s.src=v.dataset[x[0]];s.type=x[1];v.appendChild(s);});v.load();v.addEventListener("playing",function(){v.classList.add("on")});v.play().catch(function(){});});})();
+var st=function(){var v=document.querySelector("video.cx-bg"),n=navigator.connection||{};if(!v||n.saveData||matchMedia("(prefers-reduced-motion:reduce)").matches)return;var m=matchMedia("(max-width:759px)").matches;[["webm","video/webm"],["mp4","video/mp4"]].forEach(function(x){var s=document.createElement("source");s.src=v.dataset[(m?"m":"")+x[0]];s.type=x[1];v.appendChild(s);});v.poster=(m?document.querySelector(".cx-hero source[media]").srcset:document.querySelector("img.cx-bg").src);v.load();v.addEventListener("playing",function(){v.classList.add("on")});var p=v.play();if(p)p.catch(function(){});};requestAnimationFrame(function(){setTimeout(st,0)});})();
 </script>
 </body>
 </html>
