@@ -76,6 +76,7 @@ picture{display:contents}
 .night{flex:0 0 100%;scroll-snap-align:center}
 .night a{display:block;aspect-ratio:4/5;border-radius:var(--r-md);overflow:hidden;background:var(--mist)}
 .night img{width:100%;height:100%;object-fit:contain}
+.soon{display:grid;place-items:center;aspect-ratio:4/5;border-radius:var(--r-md);background:var(--mist);color:var(--ink-3);font-size:15px;text-align:center;padding:24px}
 .who{margin-top:12px}
 .who p{font-size:14px;font-weight:600;color:var(--ink-3)}
 .who p.is-today{color:var(--teal-text)}
@@ -248,9 +249,9 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
         <div class="week">
           <p class="where">Live band every night, 9:30pm · Taman Desa KL</p>
           <div class="days" id="days" role="tablist" aria-label="This week's line-up"></div>
-          <!-- Each Monday: replace these nights (date, names, poster files). The day row, the
-               names under the poster, the Book link and the event markup for search engines are
-               all built from them. After the last date the posters hide themselves. -->
+          <!-- The week comes from Xianyu Play: staff upload each night's poster there and this page
+               shows it. These nights are only the fallback when the app has none or can't
+               be reached; nobody needs to edit them. -->
           <div class="strip" id="strip">
           <div class="night" data-date="2026-10-26" data-names="Sam · Alphi"><a href="assets/lineup/mon-26oct-1024.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/lineup/mon-26oct-540.webp 540w, assets/lineup/mon-26oct-1024.webp 1024w" sizes="(min-width:900px) 440px, 92vw"><img src="assets/lineup/mon-26oct-1024.jpg" srcset="assets/lineup/mon-26oct-540.jpg 540w, assets/lineup/mon-26oct-1024.jpg 1024w" sizes="(min-width:900px) 440px, 92vw" width="1024" height="1280" loading="lazy" decoding="async" alt="Poster, Mon 26 Oct: Sam · Alphi"></picture></a></div>
           <div class="night" data-date="2026-10-27" data-names="Alex · Yee Han"><a href="assets/lineup/tue-27oct-1024.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/lineup/tue-27oct-540.webp 540w, assets/lineup/tue-27oct-1024.webp 1024w" sizes="(min-width:900px) 440px, 92vw"><img src="assets/lineup/tue-27oct-1024.jpg" srcset="assets/lineup/tue-27oct-540.jpg 540w, assets/lineup/tue-27oct-1024.jpg 1024w" sizes="(min-width:900px) 440px, 92vw" width="1024" height="1280" loading="lazy" decoding="async" alt="Poster, Tue 27 Oct: Alex · Yee Han"></picture></a></div>
@@ -269,102 +270,164 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
       <script>
       // The app's Tonight: a day row on top, one poster per night that swipes left and right, then
       // who's on. Opens on tonight; past nights are greyed. "Book a table" carries the night shown.
-      // The event markup for search engines is built from the same seven nights.
+      // The week comes from the app, where staff upload each poster; the nights written into the
+      // page above are only used when the app has none or can't be reached.
       (function () {
-        var strip = document.getElementById("strip"), days = document.getElementById("days");
-        var nights = [].slice.call(strip.querySelectorAll(".night[data-date]"));
-        if (!nights.length) return;
+        var CFG = {"api": "https://xianyu.pingan.today/api/lineup/this-week", "wa": "60126522885", "hi": "Hi Xianyu", "time": "9:30pm", "start": "21:30", "end": "00:45", "base": "https://xianyukl.com/", "venue": "Xianyu 咸鱼酒馆", "place": {"@type": "Place", "name": "Xianyu 咸鱼酒馆", "address": {"@type": "PostalAddress", "streetAddress": "Unit A-G-03, Union Tower, Jalan Desa Bakti, Taman Desa", "addressLocality": "Kuala Lumpur", "addressRegion": "Kuala Lumpur", "postalCode": "58000", "addressCountry": "MY"}}};
+        var strip = document.getElementById("strip"), days = document.getElementById("days"), sec = document.getElementById("week");
+        if (!strip || !days || !sec) return;
         var when = document.getElementById("who-when"), head = document.getElementById("who-names");
         var books = [document.getElementById("hero-book"), document.getElementById("sticky-book")];
-        var today = new Date(Date.now() + 8 * 36e5).toISOString().slice(0, 10);
-        var tomorrow = new Date(Date.parse(today + "T00:00:00Z") + 864e5).toISOString().slice(0, 10);
-        var dates = nights.map(function (n) { return n.getAttribute("data-date"); });
-        if (dates[dates.length - 1] < today) {
-          document.getElementById("week").classList.add("week-off");
-          when.textContent = "Every night · 9:30pm";
-          return;
-        }
         var WD = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], MO = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         var part = function (iso) { var d = new Date(iso + "T00:00:00Z"); return { wd: WD[d.getUTCDay()], day: d.getUTCDate(), mo: MO[d.getUTCMonth()] }; };
-        var label = function (iso) { return iso === today ? "Tonight" : iso === tomorrow ? "Tomorrow" : part(iso).wd + " " + part(iso).day; };
-        var start = dates.indexOf(today);
-        if (start < 0) start = Math.max(0, dates.findIndex(function (d) { return d > today; }));
-        var tabs = nights.map(function (n, i) {
-          var d = dates[i], p = part(d), b = document.createElement("button");
-          b.type = "button";
-          b.className = "day" + (d < today ? " past" : "") + (d === today ? " today" : "");
-          b.id = "day-" + i;
-          b.setAttribute("role", "tab");
-          b.setAttribute("aria-controls", "night-" + i);
-          b.innerHTML = "<small>" + p.wd + "</small><b>" + p.day + "</b><i></i>";
-          b.addEventListener("click", function () { go(i); });
-          days.appendChild(b);
-          n.id = "night-" + i;
-          n.setAttribute("role", "tabpanel");
-          n.setAttribute("aria-labelledby", b.id);
-          return b;
-        });
-        var sel = -1;
+        var addDay = function (iso, n) { return new Date(Date.parse(iso + "T00:00:00Z") + n * 864e5).toISOString().slice(0, 10); };
+        var clock = function (t) {
+          var m = /^(\d{1,2}):(\d{2})/.exec(t || "");
+          if (!m) return CFG.time;
+          var h = +m[1];
+          return (h % 12 || 12) + (m[2] === "00" ? "" : ":" + m[2]) + (h >= 12 ? "pm" : "am");
+        };
+        var state = { today: "", nights: [], tabs: [], sel: -1 };
+        var label = function (iso) {
+          return iso === state.today ? "Tonight" : iso === addDay(state.today, 1) ? "Tomorrow" : part(iso).wd + " " + part(iso).day;
+        };
+
+        function setBook(iso) {
+          var p = iso && part(iso);
+          var text = CFG.hi + ", I'd like to book. Date: " + (p ? p.wd + " " + p.day + " " + p.mo : "") + "  Time:  Pax:";
+          books.forEach(function (a) { if (a) a.href = "https://wa.me/" + CFG.wa + "?text=" + encodeURIComponent(text); });
+        }
         function show(i) {
-          if (i === sel) return;
-          sel = i;
-          tabs.forEach(function (b, j) { b.setAttribute("aria-selected", j === i ? "true" : "false"); b.tabIndex = j === i ? 0 : -1; });
-          nights.forEach(function (n, j) { n.querySelector("a").tabIndex = j === i ? 0 : -1; });
-          var d = dates[i], p = part(d);
-          when.textContent = label(d) + " · 9:30pm";
-          when.className = d === today ? "is-today" : "";
-          head.textContent = nights[i].getAttribute("data-names").replace(/ \u00b7 /g, "\u00a0\u00b7 ");  // break after the dot, never before
-          var text = "Hi Xianyu, I'd like to book. Date: " + (d >= today ? p.wd + " " + p.day + " " + p.mo : "") + "  Time:  Pax:";
-          books.forEach(function (a) { if (a) a.href = "https://wa.me/60126522885?text=" + encodeURIComponent(text); });
+          if (i === state.sel || !state.nights[i]) return;
+          state.sel = i;
+          state.tabs.forEach(function (b, j) { b.setAttribute("aria-selected", j === i ? "true" : "false"); b.tabIndex = j === i ? 0 : -1; });
+          [].forEach.call(strip.children, function (p, j) { var a = p.querySelector("a"); if (a) a.tabIndex = j === i ? 0 : -1; });
+          var n = state.nights[i];
+          when.textContent = label(n.date) + " · " + clock(n.startTime);
+          when.className = n.date === state.today ? "is-today" : "";
+          // Break after the dot, never before.
+          head.textContent = n.names ? n.names.replace(/ · /g, " · ") : "Live band";
+          setBook(n.date >= state.today ? n.date : null);
         }
         function go(i, focus) {
-          i = Math.min(Math.max(i, 0), nights.length - 1);
+          i = Math.min(Math.max(i, 0), state.nights.length - 1);
           show(i);
           var still = matchMedia("(prefers-reduced-motion: reduce)").matches;
           strip.scrollTo({ left: i * strip.clientWidth, behavior: still ? "auto" : "smooth" });
-          if (focus) tabs[i].focus();
+          if (focus && state.tabs[i]) state.tabs[i].focus();
         }
+        function events(nights) {
+          var old = document.getElementById("events-ld");
+          if (old) old.remove();
+          var list = nights.filter(function (n) { return n.names; }).map(function (n) {
+            var who = n.names.split("·").map(function (s) { return s.trim(); }).filter(Boolean);
+            var start = (/^\d{1,2}:\d{2}/.exec(n.startTime || "") || [CFG.start])[0];
+            if (start.length === 4) start = "0" + start;
+            var ev = {
+              "@type": "MusicEvent",
+              "name": "Live band at " + CFG.venue + ": " + who.join(", "),
+              "startDate": n.date + "T" + start + ":00+08:00",
+              "endDate": addDay(n.date, 1) + "T" + CFG.end + ":00+08:00",
+              "eventStatus": "https://schema.org/EventScheduled",
+              "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+              "isAccessibleForFree": true,
+              "performer": who.map(function (w) { return { "@type": "Person", "name": w }; }),
+              "location": CFG.place,
+              "organizer": { "@type": "Organization", "name": CFG.venue, "url": CFG.base },
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "MYR", "availability": "https://schema.org/InStock", "url": CFG.base, "validFrom": n.date + "T00:00:00+08:00" }
+            };
+            if (n.posterUrl) ev.image = new URL(n.posterUrl, CFG.base).href;
+            return ev;
+          });
+          if (!list.length) return;
+          var s = document.createElement("script");
+          s.type = "application/ld+json";
+          s.id = "events-ld";
+          s.textContent = JSON.stringify({ "@context": "https://schema.org", "@graph": list });
+          document.head.appendChild(s);
+        }
+        function render(week) {
+          var nights = week.nights || [];
+          state = { today: week.today, nights: nights, tabs: [], sel: -1 };
+          days.textContent = "";
+          strip.textContent = "";
+          if (!nights.length || nights[nights.length - 1].date < week.today) {
+            sec.classList.add("week-off");
+            when.textContent = "Every night · " + CFG.time;
+            when.className = "";
+            head.textContent = "Live band every night";
+            setBook(null);
+            return;
+          }
+          sec.classList.remove("week-off");
+          var dates = nights.map(function (n) { return n.date; });
+          var start = dates.indexOf(week.today);
+          if (start < 0) start = Math.max(0, dates.findIndex(function (d) { return d > week.today; }));
+          state.tabs = nights.map(function (n, i) {
+            var p = part(n.date), panel = document.createElement("div");
+            panel.className = "night";
+            panel.id = "night-" + i;
+            panel.setAttribute("role", "tabpanel");
+            if (n.posterUrl) {
+              var a = document.createElement("a"), img = document.createElement("img");
+              a.href = n.posterUrl;
+              a.target = "_blank";
+              a.rel = "noopener";
+              img.src = n.posterUrl;
+              img.alt = "Poster, " + p.wd + " " + p.day + " " + p.mo + (n.names ? ": " + n.names : "");
+              img.decoding = "async";
+              img.loading = Math.abs(i - start) <= 1 ? "eager" : "lazy";
+              a.appendChild(img);
+              panel.appendChild(a);
+            } else {
+              var soon = document.createElement("div");
+              soon.className = "soon";
+              soon.textContent = "Poster coming soon";
+              panel.appendChild(soon);
+            }
+            strip.appendChild(panel);
+            var b = document.createElement("button");
+            b.type = "button";
+            b.className = "day" + (n.date < week.today ? " past" : "") + (n.date === week.today ? " today" : "");
+            b.id = "day-" + i;
+            b.setAttribute("role", "tab");
+            b.setAttribute("aria-controls", panel.id);
+            b.innerHTML = "<small>" + p.wd + "</small><b>" + p.day + "</b><i></i>";
+            b.addEventListener("click", function () { go(i); });
+            days.appendChild(b);
+            panel.setAttribute("aria-labelledby", b.id);
+            return b;
+          });
+          show(start);
+          strip.scrollLeft = start * strip.clientWidth;
+          events(nights);
+        }
+
         days.addEventListener("keydown", function (e) {
-          if (e.key === "ArrowRight") { e.preventDefault(); go(sel + 1, true); }
-          if (e.key === "ArrowLeft") { e.preventDefault(); go(sel - 1, true); }
+          if (e.key === "ArrowRight") { e.preventDefault(); go(state.sel + 1, true); }
+          if (e.key === "ArrowLeft") { e.preventDefault(); go(state.sel - 1, true); }
         });
         var frame = 0;
         strip.addEventListener("scroll", function () {
           cancelAnimationFrame(frame);
           frame = requestAnimationFrame(function () {
             if (!strip.clientWidth) return;
-            var i = Math.round(strip.scrollLeft / strip.clientWidth);
-            if (i >= 0 && i < nights.length) show(i);
+            show(Math.round(strip.scrollLeft / strip.clientWidth));
           });
         }, { passive: true });
-        show(start);
-        strip.scrollLeft = start * strip.clientWidth;
-        if ("ResizeObserver" in window) new ResizeObserver(function () { strip.scrollLeft = sel * strip.clientWidth; }).observe(strip);
+        if ("ResizeObserver" in window) new ResizeObserver(function () { if (state.sel >= 0) strip.scrollLeft = state.sel * strip.clientWidth; }).observe(strip);
 
-        var base = "https://xianyukl.com/";
-        var place = { "@type": "Place", "name": "Xianyu 咸鱼酒馆", "address": { "@type": "PostalAddress", "streetAddress": "Unit A-G-03, Union Tower, Jalan Desa Bakti, Taman Desa", "addressLocality": "Kuala Lumpur", "addressRegion": "Kuala Lumpur", "postalCode": "58000", "addressCountry": "MY" } };
-        var events = nights.map(function (n, i) {
-          var d = dates[i], end = new Date(Date.parse(d + "T00:00:00Z") + 864e5).toISOString().slice(0, 10);
-          var who = n.getAttribute("data-names").split("·").map(function (s) { return s.trim(); }).filter(Boolean);
-          return {
-            "@type": "MusicEvent",
-            "name": "Live band at Xianyu 咸鱼酒馆: " + who.join(", "),
-            "startDate": d + "T21:30:00+08:00",
-            "endDate": end + "T00:45:00+08:00",
-            "eventStatus": "https://schema.org/EventScheduled",
-            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-            "isAccessibleForFree": true,
-            "image": base + n.querySelector("a").getAttribute("href"),
-            "performer": who.map(function (w) { return { "@type": "Person", "name": w }; }),
-            "location": place,
-            "organizer": { "@type": "Organization", "name": "Xianyu 咸鱼酒馆", "url": base },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "MYR", "availability": "https://schema.org/InStock", "url": base, "validFrom": d + "T00:00:00+08:00" }
-          };
+        // First what the page carries, then this week from the app. The night runs until 6am, as in the app.
+        var fallback = [].map.call(strip.querySelectorAll(".night[data-date]"), function (n) {
+          var a = n.querySelector("a");
+          return { date: n.getAttribute("data-date"), names: n.getAttribute("data-names") || "", startTime: null, posterUrl: a ? a.getAttribute("href") : null };
         });
-        var s = document.createElement("script");
-        s.type = "application/ld+json";
-        s.textContent = JSON.stringify({ "@context": "https://schema.org", "@graph": events });
-        document.head.appendChild(s);
+        render({ today: new Date(Date.now() + 2 * 36e5).toISOString().slice(0, 10), nights: fallback });
+        if (window.fetch) {
+          fetch(CFG.api).then(function (r) { return r.ok ? r.json() : null; }).then(function (w) {
+            if (w && w.today && w.nights && w.nights.some(function (n) { return n.posterUrl; })) render(w);
+          }).catch(function () {});
+        }
       })();
       </script>
       <section class="sec" id="menu" aria-labelledby="menu-h">
