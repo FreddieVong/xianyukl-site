@@ -425,7 +425,15 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
         render({ today: new Date(Date.now() + 2 * 36e5).toISOString().slice(0, 10), nights: fallback });
         if (window.fetch) {
           fetch(CFG.api).then(function (r) { return r.ok ? r.json() : null; }).then(function (w) {
-            if (w && w.today && w.nights && w.nights.some(function (n) { return n.posterUrl; })) render(w);
+            if (!(w && w.today && w.nights && w.nights.some(function (n) { return n.posterUrl; }))) return;
+            // Swap only once the poster on screen has arrived, so nobody sees it half drawn.
+            var open = w.nights.filter(function (n) { return n.date === w.today; })[0] || w.nights.filter(function (n) { return n.date > w.today; })[0];
+            if (!open || !open.posterUrl) { render(w); return; }
+            var done = false, swap = function () { if (!done) { done = true; render(w); } };
+            var img = new Image();
+            img.onload = img.onerror = swap;
+            img.src = open.posterUrl;
+            setTimeout(swap, 6000);
           }).catch(function () {});
         }
       })();
