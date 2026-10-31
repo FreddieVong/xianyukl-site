@@ -628,6 +628,10 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
   <div class="sticky" id="sticky"><a class="btn" id="sticky-book" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book.%20Date%3A%20%20Time%3A%20%20Pax%3A" target="_blank" rel="noopener"><span class="i-en">Book a table <span lang="zh">订位</span></span><span class="i-zh" lang="zh">订位</span></a></div>
   <script>
+  // Food / Drinks menu tabs.
+  (function(){var tabs=[].slice.call(document.querySelectorAll(".tabs .tab[aria-controls]"));tabs.forEach(function(t){t.type="button";t.addEventListener("click",function(){tabs.forEach(function(o){var on=o===t,p=document.getElementById(o.getAttribute("aria-controls"));o.setAttribute("aria-selected",on?"true":"false");if(p){p.hidden=!on;if(on){[].forEach.call(p.querySelectorAll("[data-defer]"),function(i){if(i.dataset.srcset)i.srcset=i.dataset.srcset;if(i.dataset.src)i.src=i.dataset.src;i.removeAttribute("data-defer");});var pg=p.querySelector("[data-pager]");if(pg)pg.dispatchEvent(new Event("scroll"));}}});});});})();
+  </script>
+  <script>
     document.querySelectorAll("[data-pager]").forEach(function (pager) {
       var name = pager.getAttribute("data-pager");
       var count = document.querySelector('[data-count="' + name + '"]');
