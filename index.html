@@ -4,6 +4,10 @@
 <meta name="facebook-domain-verification" content="wxpqnkevji57vxbxdhjxxv5bbn7ez3" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>
+  // English or 中文 before anything is drawn: ?lang= in a link, then the guest's last choice, then the phone's language.
+  (function(){var r=document.documentElement,q=/[?&]lang=(zh|en)\b/.exec(location.search),l=q&&q[1];try{if(l)localStorage.setItem("lang",l);else l=localStorage.getItem("lang");}catch(e){}if(l!=="zh"&&l!=="en")l=/^zh/i.test(navigator.language||"")?"zh":"en";if(l==="zh"){r.classList.add("zh");r.lang="zh";}})();
+  </script>
   <meta name="theme-color" content="#ffffff">
   <meta name="description" content="Xianyu 咸鱼酒馆 — live music bar at Unit A-G-03 Union Tower, Jalan Desa Bakti, Taman Desa KL. Daily 6:30pm–2:30am, live from 9:30pm, strictly 18+. WhatsApp +60 12-652 2885.">
   <meta property="og:site_name" content="Xianyu 咸鱼酒馆">
@@ -16,7 +20,7 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Xianyu 咸鱼酒馆 · live music bar, Union Tower, Taman Desa KL · daily 6:30pm–2:30am · live from 9:30pm">
   <meta property="og:locale" content="en_MY">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Xianyu 咸鱼酒馆 · Live Music Bar in Taman Desa KL">
   <meta name="twitter:description" content="Live music from 9:30pm at Union Tower, Taman Desa KL. Daily 6:30pm–2:30am, strictly 18+. WhatsApp +60 12-652 2885 to book.">
   <meta name="twitter:image" content="https://xianyukl.com/assets/og-card.jpg">
@@ -144,6 +148,25 @@ footer a{color:var(--teal-text);font-weight:600}
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px max(var(--gutter),env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(var(--gutter),env(safe-area-inset-left));background:rgba(255,255,255,.96);border-top:1px solid var(--line);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transform:translateY(110%);transition:transform .25s ease}
 .sticky.show{transform:none}
 
+/* English or 中文: each line is written in both, and the page shows one */
+html.zh .i-en,html:not(.zh) .i-zh{display:none!important}
+.btn .i-zh{font-weight:600;opacity:1}
+.top-r{display:flex;align-items:center;gap:4px}
+.lang{appearance:none;border:0;background:none;font:inherit;font-weight:600;font-size:14px;color:var(--ink-2);min-height:40px;padding:0 12px;border-radius:var(--r-sm);cursor:pointer}
+.lang:hover{background:var(--mist)}
+.where b{font-weight:600;color:var(--ink-2)}
+.where b.open{color:var(--teal-text)}
+/* Send to friends: quiet, beside the night it sends */
+.when-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.share{appearance:none;border:0;background:none;font:inherit;font-size:14px;font-weight:600;color:var(--teal-text);display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0;cursor:pointer;white-space:nowrap}
+.share svg{width:16px;height:16px}
+.share:hover{text-decoration:underline;text-underline-offset:3px}
+/* the app, below the deals: what a bill turns into */
+.deals{display:grid;gap:16px}
+.play p{color:var(--ink-2);margin-top:6px}
+.play-go{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:18px}
+.play-go .more{color:var(--teal-text);font-weight:600;font-size:15px;text-decoration:underline;text-underline-offset:3px}
+
 @media (min-width:900px){
   :root{--gutter:48px}
   .top{padding:24px 0 16px}
@@ -238,18 +261,18 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </script>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
+  <a class="skip" href="#main"><span class="i-en">Skip to content</span><span class="i-zh" lang="zh">跳到内容</span></a>
   <div class="wrap">
     <header class="top">
       <a class="brand" href="./"><picture><source type="image/webp" srcset="assets/img/logo-300.webp"><img class="mark" src="assets/img/logo-300.png" width="60" height="60" alt="Xianyu 咸鱼酒馆"></picture></a>
-      <a class="top-book" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book.%20Date%3A%20%20Time%3A%20%20Pax%3A" target="_blank" rel="noopener">Book</a>
+      <div class="top-r"><button class="lang" id="lang" type="button" lang="zh" aria-label="切换到中文">中文</button><a class="top-book" id="top-book" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book.%20Date%3A%20%20Time%3A%20%20Pax%3A" target="_blank" rel="noopener"><span class="i-en">Book</span><span class="i-zh" lang="zh">订位</span></a></div>
     </header>
 
     <main id="main">
-      <section class="tonight" id="week" aria-label="This week's line-up">
+      <section class="tonight" id="week" aria-label="This week's line-up" data-zh-label="本周演出">
         <div class="week">
-          <p class="where">Live band every night, 9:30pm · Taman Desa KL</p>
-          <div class="days" id="days" role="tablist" aria-label="This week's line-up"></div>
+          <p class="where" id="where"><span class="i-en">Live band every night, 9:30pm · Taman Desa KL</span><span class="i-zh" lang="zh">每晚9点半现场乐队 · Taman Desa</span></p>
+          <div class="days" id="days" role="tablist" aria-label="This week's line-up" data-zh-label="本周演出"></div>
           <!-- The week comes from Xianyu Play: staff upload each night's poster there and this page
                shows it. These nights are only the fallback when the app has none or can't
                be reached; nobody needs to edit them. -->
@@ -263,39 +286,52 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
           </div>
         </div>
         <div class="right">
-          <figure class="reel"><div class="reel-frame"><video id="reel" muted loop playsinline preload="none" poster="assets/video/xianyu-live-band-poster.jpg" aria-label="The band playing at Xianyu"><source src="assets/video/xianyu-live-band.webm?v=5" type="video/webm"><source src="assets/video/xianyu-live-band.mp4?v=5" type="video/mp4"></video></div><figcaption>Live every night, 9:30pm to 12:45am</figcaption></figure>
-          <div class="who" aria-live="polite"><p id="who-when">This week · 9:30pm</p><h1 id="who-names">Live band every night</h1><p class="week-note">The week's singers go up every Monday on <a href="https://instagram.com/xianyu.kl" target="_blank" rel="noopener">@xianyu.kl</a>.</p></div>
-          <div class="cta"><a class="btn" id="hero-book" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book.%20Date%3A%20%20Time%3A%20%20Pax%3A" target="_blank" rel="noopener">Book a table <span lang="zh">订位</span></a><small>Any night, sent to us on WhatsApp. No deposit.</small></div>
+          <figure class="reel"><div class="reel-frame"><video id="reel" muted loop playsinline preload="none" poster="assets/video/xianyu-live-band-poster.jpg" aria-label="The band playing at Xianyu" data-zh-label="咸鱼酒馆的乐队现场"><source src="assets/video/xianyu-live-band.webm?v=5" type="video/webm"><source src="assets/video/xianyu-live-band.mp4?v=5" type="video/mp4"></video></div><figcaption><span class="i-en">Live every night, 9:30pm to 12:45am</span><span class="i-zh" lang="zh">每晚现场演出，晚上9点半至凌晨12点45分</span></figcaption></figure>
+          <div class="who" aria-live="polite"><div class="when-row"><p id="who-when">This week · 9:30pm</p><button class="share" id="share" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg><span class="i-en">Send to friends</span><span class="i-zh" lang="zh">发给朋友</span></button></div><h1 id="who-names">Live band every night</h1><p class="week-note"><span class="i-en">The week's singers go up every Monday on <a href="https://instagram.com/xianyu.kl" target="_blank" rel="noopener">@xianyu.kl</a>.</span><span class="i-zh" lang="zh">每周一在 <a href="https://instagram.com/xianyu.kl" target="_blank" rel="noopener">@xianyu.kl</a> 公布当周歌手。</span></p></div>
+          <div class="cta"><a class="btn" id="hero-book" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book.%20Date%3A%20%20Time%3A%20%20Pax%3A" target="_blank" rel="noopener"><span class="i-en">Book a table <span lang="zh">订位</span></span><span class="i-zh" lang="zh">订位</span></a><small><span class="i-en">Any night, sent to us on WhatsApp. No deposit.</span><span class="i-zh" lang="zh">哪一晚都可以订，WhatsApp 我们就好。无需订金。</span></small></div>
         </div>
       </section>
       <script>
       // The app's Tonight: a day row on top, one poster per night that swipes left and right, then
-      // who's on. Opens on tonight; past nights are greyed. "Book a table" carries the night shown.
+      // who's on. Opens on tonight, or on the night in a shared link (#2026-11-06); past nights are
+      // greyed. "Book a table" and "Send to friends" carry the night shown, in the page's language.
       // The week comes from the app, where staff upload each poster; the nights written into the
       // page above are only used when the app has none or can't be reached.
       (function () {
-        var CFG = {"api": "https://xianyu.pingan.today/api/lineup/this-week", "wa": "60126522885", "hi": "Hi Xianyu", "time": "9:30pm", "start": "21:30", "end": "00:45", "base": "https://xianyukl.com/", "venue": "Xianyu 咸鱼酒馆", "place": {"@type": "Place", "name": "Xianyu 咸鱼酒馆", "address": {"@type": "PostalAddress", "streetAddress": "Unit A-G-03, Union Tower, Jalan Desa Bakti, Taman Desa", "addressLocality": "Kuala Lumpur", "addressRegion": "Kuala Lumpur", "postalCode": "58000", "addressCountry": "MY"}}};
+        var CFG = {"api": "https://xianyu.pingan.today/api/lineup/this-week", "wa": "60126522885", "hi": "Hi Xianyu", "hiZh": "你好 咸鱼酒馆", "open": "18:30", "close": "02:30", "area": "Taman Desa KL", "areaZh": "Taman Desa", "time": "9:30pm", "start": "21:30", "end": "00:45", "base": "https://xianyukl.com/", "venue": "Xianyu 咸鱼酒馆", "place": {"@type": "Place", "name": "Xianyu 咸鱼酒馆", "address": {"@type": "PostalAddress", "streetAddress": "Unit A-G-03, Union Tower, Jalan Desa Bakti, Taman Desa", "addressLocality": "Kuala Lumpur", "addressRegion": "Kuala Lumpur", "postalCode": "58000", "addressCountry": "MY"}}};
         var strip = document.getElementById("strip"), days = document.getElementById("days"), sec = document.getElementById("week");
         if (!strip || !days || !sec) return;
         var when = document.getElementById("who-when"), head = document.getElementById("who-names");
-        var books = [document.getElementById("hero-book"), document.getElementById("sticky-book")];
+        var share = document.getElementById("share"), where = document.getElementById("where");
+        var books = [document.getElementById("top-book"), document.getElementById("hero-book"), document.getElementById("sticky-book")];
+        var zh = function () { return document.documentElement.classList.contains("zh"); };
         var WD = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], MO = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        var part = function (iso) { var d = new Date(iso + "T00:00:00Z"); return { wd: WD[d.getUTCDay()], day: d.getUTCDate(), mo: MO[d.getUTCMonth()] }; };
+        var WZ = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+        var part = function (iso) { var d = new Date(iso + "T00:00:00Z"); return { wd: WD[d.getUTCDay()], wz: WZ[d.getUTCDay()], day: d.getUTCDate(), mo: MO[d.getUTCMonth()], m: d.getUTCMonth() + 1 }; };
+        // "Sat 31 Oct" or "10月31日 周六"
+        var date = function (iso) { var p = part(iso); return zh() ? p.m + "月" + p.day + "日 " + p.wz : p.wd + " " + p.day + " " + p.mo; };
         var addDay = function (iso, n) { return new Date(Date.parse(iso + "T00:00:00Z") + n * 864e5).toISOString().slice(0, 10); };
+        // "9pm", "9:30pm"; in Chinese "晚上9点", "晚上9点半"
         var clock = function (t) {
-          var m = /^(\d{1,2}):(\d{2})/.exec(t || "");
-          if (!m) return CFG.time;
-          var h = +m[1];
-          return (h % 12 || 12) + (m[2] === "00" ? "" : ":" + m[2]) + (h >= 12 ? "pm" : "am");
+          var m = /^(\d{1,2}):(\d{2})/.exec(t || "") || /^(\d{1,2}):(\d{2})/.exec(CFG.start);
+          var h = +m[1], h12 = h % 12 || 12;
+          if (zh()) return (h < 6 ? "凌晨" : h < 12 ? "上午" : h < 18 ? "下午" : "晚上") + h12 + "点" + (m[2] === "00" ? "" : m[2] === "30" ? "半" : m[2] + "分");
+          return h12 + (m[2] === "00" ? "" : ":" + m[2]) + (h >= 12 ? "pm" : "am");
         };
-        var state = { today: "", nights: [], tabs: [], sel: -1 };
+        // Break after the dot, never before.
+        var names = function (s) { return s.replace(/ · /g, " · "); };
+        var state = { today: "", nights: [], tabs: [], sel: -1 }, shown = null;
         var label = function (iso) {
-          return iso === state.today ? "Tonight" : iso === addDay(state.today, 1) ? "Tomorrow" : part(iso).wd + " " + part(iso).day;
+          if (iso === state.today) return zh() ? "今晚" : "Tonight";
+          if (iso === addDay(state.today, 1)) return zh() ? "明晚" : "Tomorrow";
+          var p = part(iso);
+          return zh() ? p.wz + " " + p.day + "日" : p.wd + " " + p.day;
         };
+        var hashDate = function () { var h = /^#(\d{4}-\d{2}-\d{2})$/.exec(location.hash); return h && h[1]; };
 
         function setBook(iso) {
-          var p = iso && part(iso);
-          var text = CFG.hi + ", I'd like to book. Date: " + (p ? p.wd + " " + p.day + " " + p.mo : "") + "  Time:  Pax:";
+          var d = iso ? date(iso) : "";
+          var text = zh() ? CFG.hiZh + "，我想订位。日期：" + d + "  时间：  人数：" : CFG.hi + ", I'd like to book. Date: " + d + "  Time:  Pax:";
           books.forEach(function (a) { if (a) a.href = "https://wa.me/" + CFG.wa + "?text=" + encodeURIComponent(text); });
         }
         function show(i) {
@@ -306,9 +342,9 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
           var n = state.nights[i];
           when.textContent = label(n.date) + " · " + clock(n.startTime);
           when.className = n.date === state.today ? "is-today" : "";
-          // Break after the dot, never before.
-          head.textContent = n.names ? n.names.replace(/ · /g, " · ") : "Live band";
+          head.textContent = n.names ? names(n.names) : zh() ? "现场乐队" : "Live band";
           setBook(n.date >= state.today ? n.date : null);
+          if (share) share.hidden = n.date < state.today;
         }
         function go(i, focus) {
           i = Math.min(Math.max(i, 0), state.nights.length - 1);
@@ -347,23 +383,29 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
           s.textContent = JSON.stringify({ "@context": "https://schema.org", "@graph": list });
           document.head.appendChild(s);
         }
-        function render(week) {
+        // keep: the night on screen stays on screen (a language switch redraws the week).
+        function render(week, keep) {
+          var was = keep && state.nights[state.sel] ? state.nights[state.sel].date : null;
           var nights = week.nights || [];
+          shown = week;
           state = { today: week.today, nights: nights, tabs: [], sel: -1 };
           days.textContent = "";
           strip.textContent = "";
           if (!nights.length || nights[nights.length - 1].date < week.today) {
             sec.classList.add("week-off");
-            when.textContent = "Every night · " + CFG.time;
+            when.textContent = (zh() ? "每晚 · " : "Every night · ") + clock(CFG.start);
             when.className = "";
-            head.textContent = "Live band every night";
+            head.textContent = zh() ? "每晚都有现场乐队" : "Live band every night";
             setBook(null);
+            if (share) share.hidden = false;
             return;
           }
           sec.classList.remove("week-off");
           var dates = nights.map(function (n) { return n.date; });
           var start = dates.indexOf(week.today);
           if (start < 0) start = Math.max(0, dates.findIndex(function (d) { return d > week.today; }));
+          var pick = was || hashDate();
+          if (pick && dates.indexOf(pick) > -1) start = dates.indexOf(pick);
           state.tabs = nights.map(function (n, i) {
             var p = part(n.date), panel = document.createElement("div");
             panel.className = "night";
@@ -375,7 +417,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
               a.target = "_blank";
               a.rel = "noopener";
               img.src = n.posterUrl;
-              img.alt = "Poster, " + p.wd + " " + p.day + " " + p.mo + (n.names ? ": " + n.names : "");
+              img.alt = (zh() ? "海报，" + date(n.date) + (n.names ? "：" + n.names : "") : "Poster, " + date(n.date) + (n.names ? ": " + n.names : ""));
               img.decoding = "async";
               img.loading = Math.abs(i - start) <= 1 ? "eager" : "lazy";
               a.appendChild(img);
@@ -383,7 +425,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
             } else {
               var soon = document.createElement("div");
               soon.className = "soon";
-              soon.textContent = "Poster coming soon";
+              soon.textContent = zh() ? "海报即将上线" : "Poster coming soon";
               panel.appendChild(soon);
             }
             strip.appendChild(panel);
@@ -393,7 +435,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
             b.id = "day-" + i;
             b.setAttribute("role", "tab");
             b.setAttribute("aria-controls", panel.id);
-            b.innerHTML = "<small>" + p.wd + "</small><b>" + p.day + "</b><i></i>";
+            b.innerHTML = "<small>" + (zh() ? p.wz : p.wd) + "</small><b>" + p.day + "</b><i></i>";
             b.addEventListener("click", function () { go(i); });
             days.appendChild(b);
             panel.setAttribute("aria-labelledby", b.id);
@@ -403,7 +445,32 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
           strip.scrollLeft = start * strip.clientWidth;
           events(nights);
         }
+        // "Open now · live band 9pm · SS13 Subang Jaya", in KL time.
+        function openLine() {
+          if (!where) return;
+          var t = new Date(Date.now() + 8 * 36e5), now = t.getUTCHours() * 60 + t.getUTCMinutes();
+          var mins = function (s) { var m = /^(\d{1,2}):(\d{2})/.exec(s); return +m[1] * 60 + +m[2]; };
+          var o = mins(CFG.open), c = mins(CFG.close);
+          var open = c < o ? now >= o || now < c : now >= o && now < c;
+          var b = document.createElement("b");
+          b.className = open ? "open" : "";
+          b.textContent = open ? (zh() ? "营业中" : "Open now") : (zh() ? clock(CFG.open) + "开门" : "Opens " + clock(CFG.open));
+          where.textContent = "";
+          where.appendChild(b);
+          where.appendChild(document.createTextNode(zh() ? " · " + clock(CFG.start) + "现场乐队 · " + CFG.areaZh : " · live band " + clock(CFG.start) + " · " + CFG.area));
+        }
 
+        // Send the night shown to friends: the phone's share sheet, or WhatsApp where there is none.
+        // A button, not a wa.me link, so it never counts as a booking.
+        if (share) share.addEventListener("click", function () {
+          var n = state.nights[state.sel], url = CFG.base + (n ? "#" + n.date : ""), text;
+          if (!n) text = zh() ? CFG.venue + "每晚都有现场乐队，" + clock(CFG.start) + "开始。" : "Live band every night at " + CFG.venue + ", from " + clock(CFG.start) + ".";
+          else if (zh()) text = date(n.date) + "，" + CFG.venue + "：" + (n.names || "现场乐队") + "，" + clock(n.startTime) + "开唱。";
+          else text = date(n.date) + " at " + CFG.venue + ": " + (n.names || "live band") + ", from " + clock(n.startTime) + ".";
+          try { gtag("event", "share_click", { night: n ? n.date : "", transport_type: "beacon" }); } catch (x) {}
+          if (navigator.share) { navigator.share({ text: text, url: url }).catch(function () {}); return; }
+          window.open("https://wa.me/?text=" + encodeURIComponent(text + " " + url), "_blank", "noopener");
+        });
         days.addEventListener("keydown", function (e) {
           if (e.key === "ArrowRight") { e.preventDefault(); go(state.sel + 1, true); }
           if (e.key === "ArrowLeft") { e.preventDefault(); go(state.sel - 1, true); }
@@ -417,6 +484,13 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
           });
         }, { passive: true });
         if ("ResizeObserver" in window) new ResizeObserver(function () { if (state.sel >= 0) strip.scrollLeft = state.sel * strip.clientWidth; }).observe(strip);
+        window.addEventListener("hashchange", function () {
+          var i = state.nights.map(function (n) { return n.date; }).indexOf(hashDate());
+          if (i > -1) { go(i); sec.scrollIntoView(); }
+        });
+        document.addEventListener("langchange", function () { if (shown) render(shown, true); openLine(); });
+        openLine();
+        setInterval(openLine, 60000);
 
         // First what the page carries, then this week from the app. The night runs until 6am, as in the app.
         var fallback = [].map.call(strip.querySelectorAll(".night[data-date]"), function (n) {
@@ -428,9 +502,9 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
           fetch(CFG.api).then(function (r) { return r.ok ? r.json() : null; }).then(function (w) {
             if (!(w && w.today && w.nights && w.nights.some(function (n) { return n.posterUrl; }))) return;
             // Swap only once the poster on screen has arrived, so nobody sees it half drawn.
-            var open = w.nights.filter(function (n) { return n.date === w.today; })[0] || w.nights.filter(function (n) { return n.date > w.today; })[0];
-            if (!open || !open.posterUrl) { render(w); return; }
-            var done = false, swap = function () { if (!done) { done = true; render(w); } };
+            var open = w.nights.filter(function (n) { return n.date === (hashDate() || w.today); })[0] || w.nights.filter(function (n) { return n.date > w.today; })[0];
+            if (!open || !open.posterUrl) { render(w, true); return; }
+            var done = false, swap = function () { if (!done) { done = true; render(w, true); } };
             var img = new Image();
             img.onload = img.onerror = swap;
             img.src = open.posterUrl;
@@ -440,37 +514,37 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
       })();
       </script>
       <section class="sec" id="menu" aria-labelledby="menu-h">
-        <span class="sec-label">Menu</span>
-        <h2 id="menu-h">Food &amp; drinks</h2>
-        <p class="note">Prices before service charge and SST</p>
+        <span class="sec-label"><span class="i-en">Menu</span><span class="i-zh" lang="zh">菜单</span></span>
+        <h2 id="menu-h"><span class="i-en">Food &amp; drinks</span><span class="i-zh" lang="zh">餐点与酒水</span></h2>
+        <p class="note"><span class="i-en">Prices before service charge and SST</span><span class="i-zh" lang="zh">价格未含服务费及SST</span></p>
 
-        <div class="tabs" role="tablist" aria-label="Menu"><button class="tab" role="tab" aria-selected="true" aria-controls="tab-food">Food <span lang="zh">餐单</span></button><button class="tab" role="tab" aria-selected="false" aria-controls="tab-drinks">Drinks <span lang="zh">酒单</span></button></div>
-        <div class="pager-wrap" id="tab-food" role="tabpanel" aria-label="Food menu">
+        <div class="tabs" role="tablist" aria-label="Menu" data-zh-label="菜单"><button class="tab" role="tab" aria-selected="true" aria-controls="tab-food"><span class="i-en">Food <span lang="zh">餐单</span></span><span class="i-zh" lang="zh">餐单</span></button><button class="tab" role="tab" aria-selected="false" aria-controls="tab-drinks"><span class="i-en">Drinks <span lang="zh">酒单</span></span><span class="i-zh" lang="zh">酒单</span></button></div>
+        <div class="pager-wrap" id="tab-food" role="tabpanel" aria-label="Food menu" data-zh-label="餐单">
           <div class="pager-head">
-            <p class="pager-label">Swipe · tap a page for full size</p>
+            <p class="pager-label"><span class="i-en">Swipe · tap a page for full size</span><span class="i-zh" lang="zh">左右滑动 · 点开看大图</span></p>
             <div class="pager-nav">
               <p class="pager-count" data-count="food">1 / 4</p>
-              <button class="pager-btn" type="button" data-prev="food" aria-label="Previous food menu page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-              <button class="pager-btn" type="button" data-next="food" aria-label="Next food menu page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+              <button class="pager-btn" type="button" data-prev="food" aria-label="Previous food menu page" data-zh-label="上一页"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+              <button class="pager-btn" type="button" data-next="food" aria-label="Next food menu page" data-zh-label="下一页"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
             </div>
           </div>
-          <div class="pager" data-pager="food" aria-label="Food menu pages" tabindex="0">
+          <div class="pager" data-pager="food" aria-label="Food menu pages" data-zh-label="餐单页面" tabindex="0">
             <a class="page" href="assets/menu/food-p1.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/food-p1-480.webp 480w, assets/img/food-p1-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/food-p1-960.jpg" srcset="assets/img/food-p1-480.jpg 480w, assets/img/food-p1-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 food menu page 1 of 4"></picture></a>
             <a class="page" href="assets/menu/food-p2.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/food-p2-480.webp 480w, assets/img/food-p2-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/food-p2-960.jpg" srcset="assets/img/food-p2-480.jpg 480w, assets/img/food-p2-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 food menu page 2 of 4"></picture></a>
             <a class="page" href="assets/menu/food-p3.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/food-p3-480.webp 480w, assets/img/food-p3-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/food-p3-960.jpg" srcset="assets/img/food-p3-480.jpg 480w, assets/img/food-p3-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 food menu page 3 of 4"></picture></a>
             <a class="page" href="assets/menu/food-p4.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/food-p4-480.webp 480w, assets/img/food-p4-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/food-p4-960.jpg" srcset="assets/img/food-p4-480.jpg 480w, assets/img/food-p4-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 food menu page 4 of 4"></picture></a>
           </div>
         </div>
-        <div class="pager-wrap" id="tab-drinks" role="tabpanel" aria-label="Drinks menu" hidden>
+        <div class="pager-wrap" id="tab-drinks" role="tabpanel" aria-label="Drinks menu" data-zh-label="酒单" hidden>
           <div class="pager-head">
-            <p class="pager-label">Swipe · tap a page for full size</p>
+            <p class="pager-label"><span class="i-en">Swipe · tap a page for full size</span><span class="i-zh" lang="zh">左右滑动 · 点开看大图</span></p>
             <div class="pager-nav">
               <p class="pager-count" data-count="drinks">1 / 4</p>
-              <button class="pager-btn" type="button" data-prev="drinks" aria-label="Previous drinks menu page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-              <button class="pager-btn" type="button" data-next="drinks" aria-label="Next drinks menu page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+              <button class="pager-btn" type="button" data-prev="drinks" aria-label="Previous drinks menu page" data-zh-label="上一页"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+              <button class="pager-btn" type="button" data-next="drinks" aria-label="Next drinks menu page" data-zh-label="下一页"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
             </div>
           </div>
-          <div class="pager" data-pager="drinks" aria-label="Drinks menu pages" tabindex="0">
+          <div class="pager" data-pager="drinks" aria-label="Drinks menu pages" data-zh-label="酒单页面" tabindex="0">
             <a class="page" href="assets/menu/drinks-p1.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/drinks-p1-480.webp 480w, assets/img/drinks-p1-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/drinks-p1-960.jpg" srcset="assets/img/drinks-p1-480.jpg 480w, assets/img/drinks-p1-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 drinks menu page 1 of 4"></picture></a>
             <a class="page" href="assets/menu/drinks-p2.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/drinks-p2-480.webp 480w, assets/img/drinks-p2-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/drinks-p2-960.jpg" srcset="assets/img/drinks-p2-480.jpg 480w, assets/img/drinks-p2-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 drinks menu page 2 of 4"></picture></a>
             <a class="page" href="assets/menu/drinks-p3.jpg" target="_blank" rel="noopener"><picture><source type="image/webp" srcset="assets/img/drinks-p3-480.webp 480w, assets/img/drinks-p3-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img src="assets/img/drinks-p3-960.jpg" srcset="assets/img/drinks-p3-480.jpg 480w, assets/img/drinks-p3-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 drinks menu page 3 of 4"></picture></a>
@@ -480,23 +554,37 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
       </section>
 
       <div class="sec lower">
+        <div class="deals">
         <div class="hh">
-          <h3>Before 8:30pm</h3>
+          <h3><span class="i-en">Before 8:30pm</span><span class="i-zh" lang="zh">晚上8点半前</span></h3>
           <ul>
-            <li><b>Sunday to Thursday</b> · not on public-holiday eves</li>
-            <li><b>Beer bucket</b> buy 1 free 1</li>
-            <li><b>Guinness, 10 glasses</b> RM175</li>
+            <li><span class="i-en"><b>Sunday to Thursday</b> · not on public-holiday eves</span><span class="i-zh" lang="zh"><b>周日至周四</b> · 公共假期前夕除外</span></li>
+            <li><span class="i-en"><b>Beer bucket</b> buy 1 free 1</span><span class="i-zh" lang="zh"><b>啤酒桶</b> 买一送一</span></li>
+            <li><span class="i-en"><b>Guinness, 10 glasses</b> RM175</span><span class="i-zh" lang="zh"><b>健力士，10杯</b> RM175</span></li>
           </ul>
         </div>
+        <section class="hh play" id="play" aria-labelledby="play-h">
+          <h3 id="play-h"><span class="i-en">Your bill = free drinks</span><span class="i-zh" lang="zh">账单换免费酒水</span></h3>
+          <p><span class="i-en">Every RM100 on your bill earns 1 chip in Xianyu Play. Free to join, nothing to download.</span><span class="i-zh" lang="zh">在 Xianyu Play，账单每 RM100 赚 1 个筹码。免费加入，不用下载 App。</span></p>
+          <ul>
+            <li><span class="i-en"><b>Fries</b> 1 chip</span><span class="i-zh" lang="zh"><b>薯条</b> 1 个筹码</span></li>
+            <li><span class="i-en"><b>Any cocktail or mocktail</b> 5 chips</span><span class="i-zh" lang="zh"><b>任选鸡尾酒或无酒精鸡尾酒</b> 5 个筹码</span></li>
+            <li><span class="i-en"><b>Tiger bucket, 5 bottles</b> 10 chips</span><span class="i-zh" lang="zh"><b>一桶虎牌啤酒（5 瓶）</b> 10 个筹码</span></li>
+            <li><span class="i-en"><b>Moët &amp; Chandon</b> 60 chips</span><span class="i-zh" lang="zh"><b>酩悦香槟</b> 60 个筹码</span></li>
+          </ul>
+          <div class="play-go"><a class="btn" href="https://xianyu.pingan.today/?from=site" data-play><span class="i-en">Join free</span><span class="i-zh" lang="zh">免费加入</span></a><a class="more" href="https://xianyu.pingan.today/" data-play><span class="i-en">Members: open Xianyu Play</span><span class="i-zh" lang="zh">已是会员？打开 Xianyu Play</span></a></div>
+        </section>
+        </div>
         <section class="find" id="visit" aria-labelledby="visit-h">
-          <span class="sec-label" id="visit-h">Find us</span>
-          <p class="addr">Unit A-G-03, Union Tower, Jalan Desa Bakti, Taman Desa, 58000 Kuala Lumpur<span>On Grab or Waze, search “Xian Yu KL”.</span></p>
+          <span class="sec-label" id="visit-h"><span class="i-en">Find us</span><span class="i-zh" lang="zh">找到我们</span></span>
+          <p class="addr">Unit A-G-03, Union Tower, Jalan Desa Bakti, Taman Desa, 58000 Kuala Lumpur<span><span class="i-en">On Grab or Waze, search “Xian Yu KL”.</span><span class="i-zh" lang="zh">在 Grab 或 Waze 搜索 “Xian Yu KL”。</span></span></p>
           <div class="go"><a class="btn" href="https://maps.app.goo.gl/R8NTbLVmtterrdzh8" target="_blank" rel="noopener">Google Maps</a><a class="btn btn-line" href="https://waze.com/ul?q=Xian%20Yu%20KL" target="_blank" rel="noopener">Waze</a></div>
           <ul class="facts">
-            <li><span class="k">Hours</span><span>6:30pm to 2:30am, every day</span></li>
-            <li><span class="k">Call</span><span><a href="tel:+60126522885">+60 12-652 2885</a> · call or WhatsApp</span></li>
-            <li><span class="k">Sofas</span><span>Fri, Sat and public-holiday eves: RM500 minimum (up to 7) or RM1,000 big sofa (up to 12)</span></li>
-            <li><span class="k">Good to know</span><span>Strictly 18+, no kids. Vapes OK, no cigarettes. Beer kept 30 days.</span></li>
+            <li><span class="k"><span class="i-en">Hours</span><span class="i-zh" lang="zh">营业时间</span></span><span><span class="i-en">6:30pm to 2:30am, every day</span><span class="i-zh" lang="zh">每天晚上6点半至凌晨2点半</span></span></li>
+            <li><span class="k"><span class="i-en">Call</span><span class="i-zh" lang="zh">电话</span></span><span><a href="tel:+60126522885">+60 12-652 2885</a> · <span class="i-en">call or WhatsApp</span><span class="i-zh" lang="zh">电话或 WhatsApp</span></span></li>
+            <li><span class="k">Google</span><span>4.7 ★ · <a href="https://www.google.com/search?q=Xianyu+%E5%92%B8%E9%B1%BC%E9%85%92%E9%A6%86&amp;ludocid=4177750025469283791#lrd=0x31cc4b0013cd4911:0x39fa59837479cdcf,1" target="_blank" rel="noopener"><span class="i-en">read the reviews</span><span class="i-zh" lang="zh">看评价</span></a></span></li>
+            <li><span class="k"><span class="i-en">Sofas</span><span class="i-zh" lang="zh">沙发</span></span><span><span class="i-en">Fri, Sat and public-holiday eves: RM500 minimum (up to 7) or RM1,000 big sofa (up to 12)</span><span class="i-zh" lang="zh">周五、周六及公共假期前夕：最低消费 RM500（最多7人），或大沙发 RM1,000（最多12人）</span></span></li>
+            <li><span class="k"><span class="i-en">Good to know</span><span class="i-zh" lang="zh">须知</span></span><span><span class="i-en">Strictly 18+, no kids. Vapes OK, no cigarettes. Beer kept 30 days.</span><span class="i-zh" lang="zh">只限18岁以上，不招待儿童。可抽电子烟，禁香烟。啤酒可寄存30天。</span></span></li>
           </ul>
         </section>
       </div>
@@ -505,12 +593,12 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
   <footer>
     <div class="wrap">
-      <p>Xianyu 咸鱼酒馆 · <a href="https://instagram.com/xianyu.kl" target="_blank" rel="noopener">@xianyu.kl</a></p>
+      <p>Xianyu 咸鱼酒馆 · <a href="https://instagram.com/xianyu.kl" target="_blank" rel="noopener">@xianyu.kl</a> · <a href="https://xianyu.pingan.today/?from=site" data-play><span class="i-en">Join Xianyu Play free</span><span class="i-zh" lang="zh">免费加入 Xianyu Play</span></a></p>
       <p>Dojo Group Sdn Bhd (202501016432)</p>
     </div>
   </footer>
 
-  <div class="sticky" id="sticky"><a class="btn" id="sticky-book" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book.%20Date%3A%20%20Time%3A%20%20Pax%3A" target="_blank" rel="noopener">Book a table <span lang="zh">订位</span></a></div>
+  <div class="sticky" id="sticky"><a class="btn" id="sticky-book" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book.%20Date%3A%20%20Time%3A%20%20Pax%3A" target="_blank" rel="noopener"><span class="i-en">Book a table <span lang="zh">订位</span></span><span class="i-zh" lang="zh">订位</span></a></div>
   <script>
     document.querySelectorAll("[data-pager]").forEach(function (pager) {
       var name = pager.getAttribute("data-pager");
@@ -578,6 +666,16 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   <script>
   // The band clip plays only while it is on screen, and never for reduced motion or data saver.
   (function(){var v=document.getElementById("reel"),n=navigator.connection||{};if(!v||n.saveData||matchMedia("(prefers-reduced-motion: reduce)").matches||!("IntersectionObserver" in window))return;new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var p=v.play();if(p)p.catch(function(){});}else v.pause();});},{threshold:.25}).observe(v);})();
+  </script>
+  <script>
+  // English or 中文. The choice is remembered on this phone; the Tonight script redraws on "langchange".
+  (function(){var b=document.getElementById("lang"),r=document.documentElement;if(!b)return;
+  function set(z){r.classList.toggle("zh",z);r.lang=z?"zh":"en";b.textContent=z?"EN":"中文";b.lang=z?"en":"zh";b.setAttribute("aria-label",z?"Switch to English":"切换到中文");
+  [].forEach.call(document.querySelectorAll("[data-zh-label]"),function(e){if(!e.hasAttribute("data-en-label"))e.setAttribute("data-en-label",e.getAttribute("aria-label")||"");e.setAttribute("aria-label",z?e.getAttribute("data-zh-label"):e.getAttribute("data-en-label"));});}
+  set(r.classList.contains("zh"));
+  b.addEventListener("click",function(){var z=!r.classList.contains("zh");set(z);try{localStorage.setItem("lang",z?"zh":"en");}catch(e){}try{gtag("event","language",{lang:z?"zh":"en"});}catch(e){}document.dispatchEvent(new Event("langchange"));});
+  // Taps on the app's links, for the check on 16 Nov.
+  document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-play]");if(a){try{gtag("event","play_click",{link_url:a.href,transport_type:"beacon"});}catch(x){}}},true);})();
   </script>
 </body>
 </html>
