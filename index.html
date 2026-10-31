@@ -345,6 +345,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
           books.forEach(function (a) { if (a) a.href = "https://wa.me/" + CFG.wa + "?text=" + encodeURIComponent(text); });
         }
         function show(i) {
+          for (var j = i - 1; j <= i + 1; j++) { var pn = document.getElementById("night-" + j), li = pn && pn.querySelector("img[data-src]"); if (li) { if (li.dataset.srcset) li.srcset = li.dataset.srcset; li.src = li.dataset.src; li.removeAttribute("data-src"); } }
           if (i === state.sel || !state.nights[i]) return;
           state.sel = i;
           state.tabs.forEach(function (b, j) { b.setAttribute("aria-selected", j === i ? "true" : "false"); b.tabIndex = j === i ? 0 : -1; });
@@ -434,6 +435,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
               img.alt = (zh() ? "海报，" + date(n.date) + (n.names ? "：" + n.names : "") : "Poster, " + date(n.date) + (n.names ? ": " + n.names : ""));
               img.decoding = "async";
               img.loading = Math.abs(i - start) <= 1 ? "eager" : "lazy";
+              if (Math.abs(i - start) > 1) { img.dataset.src = img.src; img.removeAttribute("src"); if (img.srcset) { img.dataset.srcset = img.srcset; img.removeAttribute("srcset"); } img.className = "lazyNight"; }
               a.appendChild(img);
               panel.appendChild(a);
             } else {
