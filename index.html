@@ -462,7 +462,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
           strip.scrollLeft = start * strip.clientWidth;
           events(nights);
         }
-        // "Open now · live band 9pm · SS13 Subang Jaya", in KL time.
+        // "Open now" line, in KL time.
         function openLine() {
           if (!where) return;
           var t = new Date(Date.now() + 8 * 36e5), now = t.getUTCHours() * 60 + t.getUTCMinutes();
