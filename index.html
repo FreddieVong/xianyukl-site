@@ -8,6 +8,7 @@
   // English or 中文 before anything is drawn: ?lang= in a link, then the guest's last choice, then the phone's language.
   (function(){var r=document.documentElement,q=/[?&]lang=(zh|en)\b/.exec(location.search),l=q&&q[1];try{if(l)localStorage.setItem("lang",l);else l=localStorage.getItem("lang");}catch(e){}if(l!=="zh"&&l!=="en")l=/^zh/i.test(navigator.language||"")?"zh":"en";if(l==="zh"){r.classList.add("zh");r.lang="zh";}})();
   </script>
+  <script id="poster-preload">(function(){var m={"2026-10-26":"mon-26oct","2026-10-27":"tue-27oct","2026-10-28":"wed-28oct","2026-10-29":"thu-29oct","2026-10-30":"fri-30oct","2026-10-31":"sat-31oct"},t=new Date(Date.now()+2*36e5).toISOString().slice(0,10),s=m[t];if(!s){var k=Object.keys(m).filter(function(d){return d>t;})[0];s=k&&m[k];}if(s){var l=document.createElement("link");l.rel="preload";l.as="image";l.setAttribute("fetchpriority","high");l.setAttribute("imagesrcset","assets/lineup/"+s+"-540.webp 540w, assets/lineup/"+s+"-1024.webp 1024w");l.setAttribute("imagesizes","(min-width:900px) 440px, 92vw");document.head.appendChild(l);}})();</script>
   <meta name="theme-color" content="#ffffff">
   <meta name="description" content="Xianyu 咸鱼酒馆 — live music bar at Unit A-G-03 Union Tower, Jalan Desa Bakti, Taman Desa KL. Daily 6:30pm–2:30am, live from 9:30pm, strictly 18+. WhatsApp +60 12-652 2885.">
   <meta property="og:site_name" content="Xianyu 咸鱼酒馆">

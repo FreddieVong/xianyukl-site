@@ -25,3 +25,8 @@ block = '<script type="application/ld+json" id="events-static">' + json.dumps({"
 h = re.sub(r'\n?<script type="application/ld\+json" id="events-static">.*?</script>', '', h, flags=re.S)
 h = h.replace("</head>", block + "\n</head>", 1)
 p.write_text(h, encoding="utf-8"); print(len(ev), "events prerendered")
+# Keep the tonight-poster preload map in <head> in step with this week's posters.
+h = p.read_text(encoding="utf-8")
+dates = re.findall(r'<div class="night" data-date="([\d-]+)" data-names="[^"]*"><a href="assets/lineup/(.+?)-1024\.jpg"', h)
+h = re.sub(r'(<script id="poster-preload">\(function\(\)\{var m=\{)[^}]*\}', lambda mm: mm.group(1) + ",".join(f'"{d}":"{s}"' for d, s in dates) + "}", h, count=1)
+p.write_text(h, encoding="utf-8")
