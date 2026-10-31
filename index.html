@@ -511,11 +511,14 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
           var a = n.querySelector("a");
           return { date: n.getAttribute("data-date"), names: n.getAttribute("data-names") || "", startTime: null, posterUrl: a ? a.getAttribute("href") : null };
         });
-        render({ today: new Date(Date.now() + 2 * 36e5).toISOString().slice(0, 10), nights: fallback });
+        var fallbackToday = new Date(Date.now() + 2 * 36e5).toISOString().slice(0, 10);
+        render({ today: fallbackToday, nights: fallback });
         if (window.fetch) {
           fetch(CFG.api).then(function (r) { return r.ok ? r.json() : null; }).then(function (w) {
             if (!(w && w.today && w.nights && w.nights.some(function (n) { return n.posterUrl; }))) return;
             w.nights.forEach(function (n) { var f = fallback.filter(function (x) { return x.date === n.date && x.names === (n.names || "") && x.posterUrl; })[0]; if (f) n.posterUrl = f.posterUrl; });
+            // Nothing new from the app: keep the page as drawn (a redraw would make a second, late LCP image).
+            if (w.today === fallbackToday && w.nights.length === fallback.length && w.nights.every(function (n, i) { return n.date === fallback[i].date && (n.names || "") === fallback[i].names && n.posterUrl === fallback[i].posterUrl; })) return;
             // Swap only once the poster on screen has arrived, so nobody sees it half drawn.
             var open = w.nights.filter(function (n) { return n.date === (hashDate() || w.today); })[0] || w.nights.filter(function (n) { return n.date > w.today; })[0];
             if (!open || !open.posterUrl) { render(w, true); return; }
