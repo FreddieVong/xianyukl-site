@@ -430,7 +430,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
               a.target = "_blank";
               a.rel = "noopener";
               var lm = /assets\/lineup\/(.+)-1024\.jpg$/.exec(n.posterUrl);
-              if (lm) { img.srcset = "assets/lineup/" + lm[1] + "-540.webp 540w, assets/lineup/" + lm[1] + "-1024.webp 1024w"; img.sizes = "(min-width:900px) 440px, 92vw"; }
+              if (lm) { img.srcset = "assets/lineup/" + lm[1] + "-540.webp 540w, assets/lineup/" + lm[1] + "-1024.webp 1024w"; img.sizes = "(min-width:900px) 440px, 92vw"; img.width = 540; img.height = 675; }
               if (i === start) img.setAttribute("fetchpriority", "high");
               img.src = n.posterUrl;
               img.alt = (zh() ? "海报，" + date(n.date) + (n.names ? "：" + n.names : "") : "Poster, " + date(n.date) + (n.names ? ": " + n.names : ""));
