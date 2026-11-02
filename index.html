@@ -314,7 +314,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
         if (!strip || !days || !sec) return;
         var when = document.getElementById("who-when"), head = document.getElementById("who-names");
         var share = document.getElementById("share"), where = document.getElementById("where");
-        var books = [document.getElementById("top-book"), document.getElementById("hero-book"), document.getElementById("sticky-book")];
+        var books = { forEach: function (f) { ["top-book", "hero-book", "sticky-book"].forEach(function (id) { f(document.getElementById(id)); }); } }, lastIso = null;
         var zh = function () { return document.documentElement.classList.contains("zh"); };
         var WD = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], MO = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         var WZ = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
@@ -341,11 +341,14 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
         var hashDate = function () { var h = /^#(\d{4}-\d{2}-\d{2})$/.exec(location.hash); return h && h[1]; };
 
         function setBook(iso) {
+          lastIso = iso;
           var d = iso ? date(iso) : "";
           var tn = !iso || iso === state.today;
           var text = zh() ? CFG.hiZh + (tn ? "，我想订今晚的位。" : "，我想订" + d + "的位。") + "\n\n名字：\n时间：\n人数：" : CFG.hi + (tn ? ", I'd like to book for tonight." : ", I'd like to book for " + d + ".") + "\n\nName :\nTime :\nPax :";
           books.forEach(function (a) { if (a) a.href = "https://wa.me/" + CFG.wa + "?text=" + encodeURIComponent(text); });
         }
+        document.addEventListener("DOMContentLoaded", function () { setBook(lastIso); });
+        new MutationObserver(function () { setBook(lastIso); }).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
         function show(i) {
           for (var j = i - 1; j <= i + 1; j++) { var pn = document.getElementById("night-" + j), li = pn && pn.querySelector("img[data-src]"); if (li) { if (li.dataset.srcset) li.srcset = li.dataset.srcset; li.src = li.dataset.src; li.removeAttribute("data-src"); } }
           if (i === state.sel || !state.nights[i]) return;
