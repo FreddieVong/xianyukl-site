@@ -1,10 +1,88 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bar in Taman Desa &amp; Old Klang Road with Live Music Every Night · Xianyu 咸鱼酒馆</title><meta name="description" content="Live music bar at Union Tower, Taman Desa — off Old Klang Road, south of Mid Valley. Live 9:30pm–12:45am nightly, kitchen till 1am, open till 2:30am. 18+."><link rel="canonical" href="https://xianyukl.com/bar-taman-desa/">
 <meta property="og:title" content="Bar in Taman Desa &amp; Old Klang Road with Live Music Every Night · Xianyu 咸鱼酒馆"><meta property="og:description" content="Live music bar at Union Tower, Taman Desa — off Old Klang Road, south of Mid Valley. Live 9:30pm–12:45am nightly, kitchen till 1am, open till 2:30am. 18+."><meta property="og:url" content="https://xianyukl.com/bar-taman-desa/"><meta property="og:type" content="website"><meta property="og:image" content="https://xianyukl.com/assets/og-card.jpg"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/assets/logo.png"><style>body{margin:0;font:17px/1.6 system-ui,-apple-system,'PingFang SC','Noto Sans SC',sans-serif;background:#111;color:#eee}main{max-width:720px;margin:auto;padding:24px 18px 96px}h1{font-size:1.7em;line-height:1.25}h2{margin-top:1.8em;font-size:1.25em}a{color:#ffd166}.cta{display:inline-block;background:#25d366;color:#000;font-weight:700;padding:14px 22px;border-radius:10px;text-decoration:none;margin:8px 0}details{border-top:1px solid #333;padding:10px 0}summary{font-weight:600;cursor:pointer;min-height:44px}nav,footer{font-size:.9em;color:#aaa}ul{padding-left:1.2em}</style>
+<meta name="theme-color" content="#ffffff"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin><style>
+/* Same look as the home page: white paper, warm near-black headings and button, vermilion for small labels and links. */
+@font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400 700;font-display:swap;src:url(/assets/fonts/instrument-sans-latin.woff2) format("woff2")}
+:root{--paper:#fff;--mist:#f8f6f5;--ink:#1f1714;--ink-2:#5e544f;--ink-3:#6d625c;--teal:#ff3300;--teal-text:#c22d00;--forest:#1f1714;--forest-deep:#0f0b0a;--line:#eee8e5;--line-strong:#ddd4cf;--r-sm:10px;--r-md:14px;--gutter:20px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 "Instrument Sans","PingFang SC","Noto Sans SC",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.top,main{max-width:720px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+.top{padding-top:max(12px,env(safe-area-inset-top));padding-bottom:4px}
+.brand{display:inline-flex;align-items:center;min-height:44px}
+.brand img{display:block;width:60px;height:60px;object-fit:contain}
+main{padding-bottom:120px}
+a{color:var(--teal-text);font-weight:600;text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--teal-text);outline-offset:3px;border-radius:6px}
+.crumb{font-size:14px;color:var(--ink-3)}
+h1{font-size:clamp(28px,7.5vw,40px);line-height:1.1;letter-spacing:-.03em;font-weight:700;margin:10px 0 12px;text-wrap:balance}
+h2{font-size:22px;line-height:1.2;letter-spacing:-.02em;font-weight:700;margin:40px 0 8px}
+:lang(zh) h1,:lang(zh) h2{letter-spacing:0}
+p{margin:0 0 12px}
+ul{padding-left:1.2em;margin:0}
+li{margin:6px 0}
+.cta{display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 24px;border-radius:10px;background:var(--forest);color:#fff;font-weight:600;font-size:17px;text-align:center;text-decoration:none;margin:16px 0}
+.cta:hover{background:var(--forest-deep)}
+/* tonight, from the app */
+.tn{display:flex;align-items:center;gap:14px;margin:8px 0 0;padding:10px;border:1px solid var(--line);border-radius:14px;color:var(--ink);text-decoration:none}
+.tn:hover{background:var(--mist)}
+.tn img{flex:none;width:58px;height:72px;border-radius:8px;object-fit:cover;background:var(--mist)}
+.tn small{display:block;font-size:14px;font-weight:600;color:var(--teal-text)}
+.tn b{display:block;font-size:19px;line-height:1.25;letter-spacing:-.02em;font-weight:600}
+.tn i{margin-left:auto;font-style:normal;font-size:14px;font-weight:600;color:var(--ink-3);white-space:nowrap}
+details{border-top:1px solid var(--line)}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{font-weight:600;cursor:pointer;padding:12px 0;min-height:48px}
+details p{color:var(--ink-2)}
+footer{margin-top:48px;border-top:1px solid var(--line);padding-top:20px;font-size:14px;color:var(--ink-3)}
+/* phones: the booking bar shows whenever no Book button is on screen */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px max(20px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left));background:rgba(255,255,255,.96);border-top:1px solid var(--line);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transform:translateY(110%);transition:transform .25s ease}
+.sticky.show{transform:none}
+.sticky .cta{margin:0}
+@media (min-width:600px){.cta{display:inline-flex}.sticky{display:none}main{padding-bottom:56px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://xianyukl.com/bar-taman-desa/#page", "url": "https://xianyukl.com/bar-taman-desa/", "name": "Bar in Taman Desa & Old Klang Road with Live Music Every Night · Xianyu 咸鱼酒馆", "description": "Live music bar at Union Tower, Taman Desa — off Old Klang Road, south of Mid Valley. Live 9:30pm–12:45am nightly, kitchen till 1am, open till 2:30am. 18+.", "inLanguage": "en", "about": {"@id": "https://xianyukl.com/#venue"}, "isPartOf": {"@type": "WebSite", "url": "https://xianyukl.com/"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What time is live music at Xianyu?", "acceptedAnswer": {"@type": "Answer", "text": "Live music every night from 9:30pm to 12:45am."}}, {"@type": "Question", "name": "What are the opening hours?", "acceptedAnswer": {"@type": "Answer", "text": "Daily 6:30pm to 2:30am. The kitchen closes at 1am."}}, {"@type": "Question", "name": "Where is Xianyu?", "acceptedAnswer": {"@type": "Answer", "text": "Unit A-G-03, Union Tower, Jalan Desa Bakti, Taman Desa, 58000 Kuala Lumpur. Search \"Xian Yu KL\" on Waze or Grab."}}, {"@type": "Question", "name": "How do I book?", "acceptedAnswer": {"@type": "Answer", "text": "WhatsApp +60 12-652 2885 with date, time and pax. No deposit; tables are held about 15 minutes. Walk-ins welcome."}}, {"@type": "Question", "name": "Is there a happy hour?", "acceptedAnswer": {"@type": "Answer", "text": "Before 8:30pm, Sunday to Thursday (not public-holiday eves): beer bucket buy 1 free 1, Guinness 10 glasses RM175."}}, {"@type": "Question", "name": "Can kids come?", "acceptedAnswer": {"@type": "Answer", "text": "No. Xianyu is strictly 18+ at all hours."}}, {"@type": "Question", "name": "Is there a minimum spend?", "acceptedAnswer": {"@type": "Answer", "text": "Sofas on Fri, Sat and public-holiday eves only: RM500 (up to 7 guests) or RM1,000 big sofa (up to 12). No minimum on weekdays."}}, {"@type": "Question", "name": "Can I smoke?", "acceptedAnswer": {"@type": "Answer", "text": "No smoking indoors."}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Xianyu 咸鱼酒馆", "item": "https://xianyukl.com/"}, {"@type": "ListItem", "position": 2, "name": "Bar in Taman Desa with live music", "item": "https://xianyukl.com/bar-taman-desa/"}]}</script>
-</head><body><main><nav><a href="/">Xianyu 咸鱼酒馆</a> › Bar in Taman Desa with live music</nav>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GZSRML6N9E"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-GZSRML6N9E');
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href')||'';if(h.indexOf('wa.me')>-1||h.indexOf('api.whatsapp.com')>-1){try{gtag('event','whatsapp_click',{link_url:h,transport_type:'beacon'});}catch(x){}}else if(h.indexOf('maps.app.goo.gl')>-1||h.indexOf('google.com/maps')>-1||h.indexOf('waze.com')>-1){try{gtag('event','directions_click',{link_url:h,transport_type:'beacon'});}catch(x){}}},true);
+</script>
+<script>
+gtag('config','AW-18417939887');
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href')||'';if(h.indexOf('wa.me')>-1||h.indexOf('api.whatsapp.com')>-1){try{gtag('event','conversion',{send_to:'AW-18417939887/WlDNCIPR-6odEK_rrc5E',transport_type:'beacon'});}catch(x){}}},true);
+</script>
+</head><body><header class="top"><a class="brand" href="/"><picture><source type="image/webp" srcset="/assets/img/logo-300.webp"><img src="/assets/img/logo-300.png" width="60" height="60" alt="Xianyu 咸鱼酒馆"></picture></a></header><main><nav class="crumb"><a href="/">Xianyu 咸鱼酒馆</a> › Bar in Taman Desa with live music</nav>
 <h1>Bar in Taman Desa with live music</h1><p>Living or working around Taman Desa, Old Klang Road or Mid Valley and want a proper night out close by? Xianyu 咸鱼酒馆 at Union Tower has live music every night of the week (not just weekends), food till 1am and sofas for groups.</p><a class="cta" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book%20a%20table.%0A%0AName%20%3A%0ADate%20%3A%0ATime%20%3A%0APax%20%3A">Book on WhatsApp +60 12-652 2885</a>
+<a class="tn" id="tn" href="/#week"><img id="tn-img" alt="" width="58" height="72" hidden><span><small id="tn-when">Every night · 9:30pm</small><b id="tn-names">Live band every night</b></span><i>This week ›</i></a>
 <h2>Good to know</h2><ul><li>Live music 9:30pm–12:45am, every night including Monday to Thursday</li><li>Late food: kitchen open till 1am</li><li>Open 6:30pm–2:30am daily</li><li>Strictly 18+</li><li>Sofas for groups (min spend Fri/Sat/PH eve only)</li></ul><h2>Questions guests ask</h2><details><summary>What time is live music at Xianyu?</summary><p>Live music every night from 9:30pm to 12:45am.</p></details><details><summary>What are the opening hours?</summary><p>Daily 6:30pm to 2:30am. The kitchen closes at 1am.</p></details><details><summary>Where is Xianyu?</summary><p>Unit A-G-03, Union Tower, Jalan Desa Bakti, Taman Desa, 58000 Kuala Lumpur. Search &quot;Xian Yu KL&quot; on Waze or Grab.</p></details><details><summary>How do I book?</summary><p>WhatsApp +60 12-652 2885 with date, time and pax. No deposit; tables are held about 15 minutes. Walk-ins welcome.</p></details><details><summary>Is there a happy hour?</summary><p>Before 8:30pm, Sunday to Thursday (not public-holiday eves): beer bucket buy 1 free 1, Guinness 10 glasses RM175.</p></details><details><summary>Can kids come?</summary><p>No. Xianyu is strictly 18+ at all hours.</p></details><details><summary>Is there a minimum spend?</summary><p>Sofas on Fri, Sat and public-holiday eves only: RM500 (up to 7 guests) or RM1,000 big sofa (up to 12). No minimum on weekdays.</p></details><details><summary>Can I smoke?</summary><p>No smoking indoors.</p></details>
 <p><a class="cta" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book%20a%20table.%0A%0AName%20%3A%0ADate%20%3A%0ATime%20%3A%0APax%20%3A">Book on WhatsApp</a></p>
-<footer><p>Xianyu 咸鱼酒馆 · Unit A-G-03, Union Tower, Jalan Desa Bakti, Taman Desa, 58000 Kuala Lumpur · <a href="tel:+60126522885">+60 12-652 2885</a> · 6:30pm–2:30am daily · <a href="https://maps.app.goo.gl/R8NTbLVmtterrdzh8">Google Maps</a> · <a href="https://instagram.com/xianyu.kl">Instagram</a></p><p><a href="/">Home</a> · <a href="/mandopop-live-bar-kl/">Mandopop live bar KL</a> · <a href="/zh/">中文</a> · <a href="/bar-taman-desa/">Bar in Taman Desa</a> · <a href="/faq/">FAQ</a></p></footer></main></body></html>
+<footer><p>Xianyu 咸鱼酒馆 · Unit A-G-03, Union Tower, Jalan Desa Bakti, Taman Desa, 58000 Kuala Lumpur · <a href="tel:+60126522885">+60 12-652 2885</a> · 6:30pm–2:30am daily · <a href="https://maps.app.goo.gl/R8NTbLVmtterrdzh8">Google Maps</a> · <a href="https://instagram.com/xianyu.kl">Instagram</a></p><p><a href="/">Home</a> · <a href="/mandopop-live-bar-kl/">Mandopop live bar KL</a> · <a href="/zh/">中文</a> · <a href="/bar-taman-desa/">Bar in Taman Desa</a> · <a href="/faq/">FAQ</a></p></footer></main>
+<div class="sticky" id="sticky"><a class="cta" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book%20a%20table.%0A%0AName%20%3A%0ADate%20%3A%0ATime%20%3A%0APax%20%3A">Book a table <span lang="zh">订位</span></a></div>
+<script>
+// Tonight's singers, from the app; the booking bar on phones.
+(function(){
+  var zh=/^zh/.test(document.documentElement.lang),card=document.getElementById("tn"),WD=["sun","mon","tue","wed","thu","fri","sat"],MO=["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
+  if(card&&window.fetch)fetch("https://xianyu.pingan.today/api/lineup/this-week").then(function(r){return r.ok?r.json():null;}).then(function(w){
+    var n=w&&w.nights&&w.nights.filter(function(x){return x.date===w.today;})[0];
+    if(!n||!n.names)return;
+    var t=/^(\d{1,2}):(\d{2})/.exec(n.startTime||"21:30"),h=+t[1],h12=h%12||12;
+    var clock=zh?"晚上"+h12+"点"+(t[2]==="30"?"半":t[2]==="00"?"":t[2]+"分"):h12+(t[2]==="00"?"":":"+t[2])+(h>=12?"pm":"am");
+    document.getElementById("tn-when").textContent=(zh?"今晚 · ":"Tonight · ")+clock;
+    document.getElementById("tn-names").textContent=n.names.replace(/ · /g,"\u00a0· ");
+    card.href="/"+(zh?"?lang=zh":"")+"#"+n.date;
+    var d=new Date(n.date+"T00:00:00Z"),img=document.getElementById("tn-img");
+    img.onload=function(){img.hidden=false;};
+    img.src="/assets/lineup/"+WD[d.getUTCDay()]+"-"+d.getUTCDate()+MO[d.getUTCMonth()]+"-540.webp";
+  }).catch(function(){});
+  var s=document.getElementById("sticky"),btns=[].slice.call(document.querySelectorAll("main .cta"));
+  if(!s||!btns.length)return;
+  if(!("IntersectionObserver" in window)){s.classList.add("show");return;}
+  var seen=[];
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){var i=seen.indexOf(e.target);if(e.isIntersecting&&i<0)seen.push(e.target);if(!e.isIntersecting&&i>-1)seen.splice(i,1);});s.classList.toggle("show",!seen.length);});
+  btns.forEach(function(b){io.observe(b);});
+})();
+</script>
+</body></html>

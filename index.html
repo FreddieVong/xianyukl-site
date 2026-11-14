@@ -77,11 +77,12 @@ picture{display:contents}
 .day[aria-selected="true"]{background:var(--forest);color:#fff}
 .day[aria-selected="true"] small{color:#fff}
 .day[aria-selected="true"] i{background:transparent}
-.strip{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:12px;scrollbar-width:none}
+.strip{display:flex;align-items:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:12px;scrollbar-width:none}
 .strip::-webkit-scrollbar{display:none}
 .night{flex:0 0 100%;scroll-snap-align:center}
-.night a{display:block;aspect-ratio:4/5;border-radius:var(--r-md);overflow:hidden;background:var(--mist)}
-.night img{width:100%;height:100%;object-fit:contain}
+/* the frame takes the poster's own shape (--arn = width / height), as big as fits the first screen */
+.night a{display:block;margin:0 auto;aspect-ratio:var(--arn,.8);width:min(100%,calc((100vh - 258px) * var(--arn,.8)));width:min(100%,calc((100svh - 258px) * var(--arn,.8)));min-width:min(100%,220px);border-radius:var(--r-md);overflow:hidden;background:var(--mist)}
+.night img{width:100%;height:100%;object-fit:cover}
 .soon{display:grid;place-items:center;aspect-ratio:4/5;border-radius:var(--r-md);background:var(--mist);color:var(--ink-3);font-size:15px;text-align:center;padding:24px}
 .who{margin-top:12px}
 .who p{font-size:14px;font-weight:600;color:var(--ink-3)}
@@ -441,7 +442,9 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
               a.target = "_blank";
               a.rel = "noopener";
               var lm = /assets\/lineup\/(.+)-1024\.jpg$/.exec(n.posterUrl);
-              if (lm) { img.srcset = "assets/lineup/" + lm[1] + "-540.webp 540w, assets/lineup/" + lm[1] + "-1024.webp 1024w"; img.sizes = "(min-width:900px) 440px, 92vw"; img.width = 540; img.height = 675; }
+              if (lm) { img.srcset = "assets/lineup/" + lm[1] + "-540.webp 540w, assets/lineup/" + lm[1] + "-1024.webp 1024w"; img.sizes = "(min-width:900px) 440px, 92vw"; }
+              if (n.w && n.h) { img.width = n.w; img.height = n.h; a.style.setProperty("--arn", (n.w / n.h).toFixed(4)); }
+              else img.addEventListener("load", function () { if (img.naturalWidth) a.style.setProperty("--arn", (img.naturalWidth / img.naturalHeight).toFixed(4)); });
               if (i === start) img.setAttribute("fetchpriority", "high");
               img.src = n.posterUrl;
               img.alt = (zh() ? "海报，" + date(n.date) + (n.names ? "：" + n.names : "") : "Poster, " + date(n.date) + (n.names ? ": " + n.names : ""));
@@ -522,15 +525,15 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
         // First what the page carries, then this week from the app. The night runs until 6am, as in the app.
         var fallback = [].map.call(strip.querySelectorAll(".night[data-date]"), function (n) {
-          var a = n.querySelector("a");
-          return { date: n.getAttribute("data-date"), names: n.getAttribute("data-names") || "", startTime: null, posterUrl: a ? a.getAttribute("href") : null };
+          var a = n.querySelector("a"), im = n.querySelector("img");
+          return { date: n.getAttribute("data-date"), names: n.getAttribute("data-names") || "", startTime: null, posterUrl: a ? a.getAttribute("href") : null, w: im ? +im.getAttribute("width") : 0, h: im ? +im.getAttribute("height") : 0 };
         });
         var fallbackToday = new Date(Date.now() + 2 * 36e5).toISOString().slice(0, 10);
         render({ today: fallbackToday, nights: fallback });
         if (window.fetch) {
           fetch(CFG.api).then(function (r) { return r.ok ? r.json() : null; }).then(function (w) {
             if (!(w && w.today && w.nights && w.nights.some(function (n) { return n.posterUrl; }))) return;
-            w.nights.forEach(function (n) { var f = fallback.filter(function (x) { return x.date === n.date && x.names === (n.names || "") && x.posterUrl; })[0]; if (f) n.posterUrl = f.posterUrl; });
+            w.nights.forEach(function (n) { var f = fallback.filter(function (x) { return x.date === n.date && x.names === (n.names || "") && x.posterUrl; })[0]; if (f) { n.posterUrl = f.posterUrl; n.w = f.w; n.h = f.h; } });
             // Nothing new from the app: keep the page as drawn (a redraw would make a second, late LCP image).
             if (w.today === fallbackToday && w.nights.length === fallback.length && w.nights.every(function (n, i) { return n.date === fallback[i].date && (n.names || "") === fallback[i].names && n.posterUrl === fallback[i].posterUrl; })) return;
             // Swap only once the poster on screen has arrived, so nobody sees it half drawn.
@@ -632,9 +635,9 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   <footer>
     <div class="wrap">
       <p>Xianyu 咸鱼酒馆 · <a href="https://instagram.com/xianyu.kl" target="_blank" rel="noopener">@xianyu.kl</a> · <a href="https://xianyu.pingan.today/?from=site" data-play><span class="i-en">Join Xianyu Play free</span><span class="i-zh" lang="zh">免费加入 Xianyu Play</span></a></p>
+      <nav id="seo-links" aria-label="More pages"><a href="/mandopop-live-bar-kl/">Mandopop live bar KL</a> · <a href="/bar-taman-desa/">Bar in Taman Desa</a> · <a href="/faq/">FAQ</a></nav>
       <p>Dojo Group Sdn Bhd (202501016432)</p>
     </div>
-  <nav id="seo-links" style="text-align:center;font-size:14px;padding:12px"><a href="/mandopop-live-bar-kl/">Mandopop live bar KL</a> · <a href="/zh/">中文</a> · <a href="/bar-taman-desa/">Bar in Taman Desa</a> · <a href="/faq/">FAQ</a></nav>
 </footer>
 
   <div class="sticky" id="sticky"><a class="btn" id="sticky-book" href="https://wa.me/60126522885?text=Hi%20Xianyu%2C%20I%27d%20like%20to%20book%20for%20tonight.%0A%0AName%20%3A%0ATime%20%3A%0APax%20%3A" target="_blank" rel="noopener"><span class="i-en">Book a table <span lang="zh">订位</span></span><span class="i-zh" lang="zh">订位</span></a></div>
