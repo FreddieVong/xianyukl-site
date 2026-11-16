@@ -81,9 +81,15 @@ picture{display:contents}
 .strip::-webkit-scrollbar{display:none}
 .night{flex:0 0 100%;scroll-snap-align:center}
 /* the frame takes the poster's own shape (--arn = width / height), as big as fits the first screen */
-.night a{display:block;margin:0 auto;aspect-ratio:var(--arn,.8);width:min(100%,calc((100vh - 258px) * var(--arn,.8)));width:min(100%,calc((100svh - 258px) * var(--arn,.8)));min-width:min(100%,220px);border-radius:var(--r-md);overflow:hidden;background:var(--mist)}
+.night a{display:block;margin:0 auto;aspect-ratio:var(--arn,.8);width:100%;border-radius:var(--r-md);overflow:hidden;background:var(--mist)}
 .night img{width:100%;height:100%;object-fit:cover}
-.soon{display:grid;place-items:center;aspect-ratio:4/5;border-radius:var(--r-md);background:var(--mist);color:var(--ink-3);font-size:15px;text-align:center;padding:24px}
+/* a night whose poster isn't up yet: the venue's own card, poster-sized */
+.soon{display:grid;align-content:center;justify-items:center;gap:8px;aspect-ratio:4/5;width:100%;border-radius:var(--r-md);background:var(--paper);border:1.5px solid var(--line-strong);color:var(--ink);text-align:center;padding:24px}
+.soon img{height:64px;width:auto;margin-bottom:8px}
+.soon b{font-size:clamp(40px,12vw,56px);line-height:1;letter-spacing:-.03em;font-weight:700;color:var(--ink)}
+html.zh .soon b{letter-spacing:0}
+.soon span{font-size:17px;font-weight:600;color:var(--teal-text);margin-top:4px}
+.soon small{font-size:14px;color:var(--ink-3)}
 .who{margin-top:12px}
 .who p{font-size:14px;font-weight:600;color:var(--ink-3)}
 .who p.is-today{color:var(--teal-text)}
@@ -178,6 +184,8 @@ h2.sec-label{line-height:1.5;letter-spacing:0;margin-top:0}
 @media (max-width:899px){.top-book{display:none}}
 
 @media (min-width:900px){
+  /* computers: the poster as large as fits beside tonight */
+  .night a{width:min(100%,calc((100vh - 258px) * var(--arn,.8)));width:min(100%,calc((100svh - 258px) * var(--arn,.8)));min-width:min(100%,220px);}
   :root{--gutter:48px}
   .top{padding:24px 0 16px}
   .tonight{display:grid;grid-template-columns:440px minmax(0,1fr);column-gap:64px;align-items:center}
@@ -417,13 +425,11 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
           days.textContent = "";
           strip.textContent = "";
           if (!nights.length || nights[nights.length - 1].date < week.today) {
-            sec.classList.add("week-off");
-            when.textContent = (zh() ? "每晚 · " : "Every night · ") + clock(CFG.start);
-            when.className = "";
-            head.textContent = zh() ? "每晚都有现场乐队" : "Live band every night";
-            setBook(null);
-            if (share) share.hidden = false;
-            return;
+            // This week's posters aren't up yet (staff put them up on Monday afternoon): the
+            // week's days still show, each with a stand-in until its poster arrives.
+            var mon = addDay(week.today, -((new Date(week.today + "T00:00:00Z").getUTCDay() + 6) % 7));
+            nights = [0, 1, 2, 3, 4, 5, 6].map(function (k) { return { date: addDay(mon, k), names: "", startTime: null, posterUrl: null }; });
+            state.nights = nights;
           }
           sec.classList.remove("week-off");
           var dates = nights.map(function (n) { return n.date; });
@@ -454,9 +460,14 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
               a.appendChild(img);
               panel.appendChild(a);
             } else {
-              var soon = document.createElement("div");
+              var soon = document.createElement("div"), logo = document.querySelector(".brand img");
               soon.className = "soon";
-              soon.textContent = zh() ? "海报即将上线" : "Poster coming soon";
+              if (logo) { var mark = document.createElement("img"); mark.src = logo.currentSrc || logo.src; mark.alt = ""; soon.appendChild(mark); }
+              var big = document.createElement("b"), at = document.createElement("span"), note = document.createElement("small");
+              big.textContent = zh() ? "现场乐队" : "Live band";
+              at.textContent = (n.date === week.today ? (zh() ? "今晚 · " : "Tonight · ") : date(n.date) + " · ") + clock(n.startTime);
+              note.textContent = zh() ? "歌手即将公布" : "Singers coming soon";
+              soon.appendChild(big); soon.appendChild(at); soon.appendChild(note);
               panel.appendChild(soon);
             }
             strip.appendChild(panel);
