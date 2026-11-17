@@ -65,7 +65,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 // Tonight's singers, from the app; the booking bar on phones.
 (function(){
   var zh=/^zh/.test(document.documentElement.lang),card=document.getElementById("tn"),WD=["sun","mon","tue","wed","thu","fri","sat"],MO=["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
-  if(card&&window.fetch)fetch("https://xianyu.pingan.today/api/lineup/this-week").then(function(r){return r.ok?r.json():null;}).then(function(w){
+  if(card&&window.fetch)fetch("https://play.xianyukl.com/api/lineup/this-week").then(function(r){return r.ok?r.json():null;}).then(function(w){
     var n=w&&w.nights&&w.nights.filter(function(x){return x.date===w.today;})[0];
     if(!n||!n.names)return;
     var t=/^(\d{1,2}):(\d{2})/.exec(n.startTime||"21:30"),h=+t[1],h12=h%12||12;
