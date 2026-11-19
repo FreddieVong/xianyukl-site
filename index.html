@@ -10,7 +10,7 @@
   </script>
   <script id="poster-preload">(function(){var m={"2026-11-16":"mon-16nov","2026-11-17":"tue-17nov","2026-11-18":"wed-18nov","2026-11-19":"thu-19nov","2026-11-20":"fri-20nov","2026-11-21":"sat-21nov","2026-11-22":"sun-22nov"},t=new Date(Date.now()+2*36e5).toISOString().slice(0,10),s=m[t];if(!s){var k=Object.keys(m).filter(function(d){return d>t;})[0];s=k&&m[k];}if(s){var l=document.createElement("link");l.rel="preload";l.as="image";l.setAttribute("fetchpriority","high");l.setAttribute("imagesrcset","assets/lineup/"+s+"-540.webp 540w, assets/lineup/"+s+"-1024.webp 1024w");l.setAttribute("imagesizes","(min-width:900px) 440px, 92vw");document.head.appendChild(l);}})();</script>
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="Xianyu 咸鱼酒馆, a live music bar at Unit A-G-03 Union Tower, Jalan Desa Bakti, Taman Desa KL. Daily 6:30pm–2:30am, live from 9:30pm, strictly 18+. WhatsApp +60 12-652 2885.">
+  <meta name="description" content="Xianyu 咸鱼酒馆: Mandopop live music bar at Union Tower, Taman Desa KL. Open 6:30pm–2:30am daily, live from 9:30pm, strictly 18+. WhatsApp +60 12-652 2885.">
   <meta property="og:site_name" content="Xianyu 咸鱼酒馆">
   <meta property="og:title" content="Xianyu 咸鱼酒馆 · Live Music Bar in Taman Desa KL">
   <meta property="og:description" content="Live music from 9:30pm at Union Tower, Taman Desa KL. Daily 6:30pm–2:30am, strictly 18+. WhatsApp +60 12-652 2885 to book.">
@@ -252,7 +252,22 @@ h2.sec-label{line-height:1.5;letter-spacing:0;margin-top:0}
         "closes": "02:30"
       }
     ],
+    "servesCuisine": [
+      "Chinese",
+      "Taiwanese",
+      "Bar food"
+    ],
+    "priceRange": "RM12–RM39 (food)",
     "hasMenu": [
+      {
+        "@type": "Menu",
+        "name": "Xianyu 咸鱼酒馆 full menu (text, prices in RM)",
+        "url": "https://xianyukl.com/#menu-text",
+        "inLanguage": [
+          "en",
+          "zh"
+        ]
+      },
       {
         "@type": "Menu",
         "name": "Xianyu 咸鱼酒馆 food menu (PDF)",
@@ -269,7 +284,9 @@ h2.sec-label{line-height:1.5;letter-spacing:0;margin-top:0}
     "hasMap": "https://maps.app.goo.gl/R8NTbLVmtterrdzh8",
     "sameAs": [
       "https://instagram.com/xianyu.kl",
-      "https://maps.app.goo.gl/R8NTbLVmtterrdzh8"
+      "https://maps.app.goo.gl/R8NTbLVmtterrdzh8",
+      "https://www.google.com/maps?cid=4177750025469283791",
+      "https://www.openstreetmap.org/node/14351081175"
     ]
   }
   </script>
@@ -597,6 +614,131 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
             <a class="page" href="assets/menu/drinks-p4.jpg" target="_blank" rel="noopener"><picture><source data-defer type="image/webp" data-srcset="assets/img/drinks-p4-480.webp 480w, assets/img/drinks-p4-960.webp 960w" sizes="(min-width:760px) 380px, 88vw"><img data-defer data-src="assets/img/drinks-p4-960.jpg" data-srcset="assets/img/drinks-p4-480.jpg 480w, assets/img/drinks-p4-960.jpg 960w" sizes="(min-width:760px) 380px, 88vw" width="1367" height="2000" loading="lazy" decoding="async" alt="Xianyu 咸鱼酒馆 drinks menu page 4 of 4"></picture></a>
           </div>
         </div>
+
+          <div class="menu-text sr-only" id="menu-text">
+          <h3>The menu, in text <span lang="zh">菜单文字版</span></h3>
+          <p>Prices in RM, before 10% service charge and 8% SST. Copied from the November 2026 menu; if anything differs, the menu pages are the latest. Non-halal: the menu has pork and alcohol.</p>
+
+          <details>
+            <summary>Rice <span lang="zh">饭</span></summary>
+            <ul>
+              <li><span>Black gold braised pork rice 黑金卤肉饭 <small>Braised fresh every day, with fried egg and cucumber. Choose the spice: none, mild, medium or very hot</small></span><span class="p">22</span></li>
+              <li><span>Engawa fried rice ENGAWA炒饭 <small>Xianyu's No.1: seared flounder fin on fried rice</small></span><span class="p">38</span></li>
+              <li><span>Scallop and black truffle fried rice 带子黑松露炒饭</span><span class="p">29</span></li>
+              <li><span>Shrimp and egg fried rice 虾仁蛋炒饭</span><span class="p">28</span></li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>Spicy dishes to go with drinks <span lang="zh">香辣下酒菜</span></summary>
+            <ul>
+              <li><span>Chilli chicken with potato chips 薯片辣子鸡</span><span class="p">25</span></li>
+              <li><span>Thai-style fried squid 泰式鱿鱼</span><span class="p">28</span></li>
+              <li><span>Spicy prawn balls 辣酱虾球</span><span class="p">39</span></li>
+              <li><span>Clams with dried chilli 椒干爆沙白</span><span class="p">25</span></li>
+              <li><span>Crispy white mushrooms 香脆白菇</span><span class="p">18</span></li>
+              <li><span>Dry-pot cabbage 干锅包菜</span><span class="p">18</span></li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>Snacks <span lang="zh">小吃</span></summary>
+            <ul>
+              <li><span>Roast pork with spring onion 葱爆烧肉</span><span class="p">28</span></li>
+              <li><span>Prawn paste on fried dough 油条虾滑</span><span class="p">25</span></li>
+              <li><span>Fried chicken wings 香炸鸡翅</span><span class="p">27</span></li>
+              <li><span>Sausage with garlic 蒜片香肠</span><span class="p">19</span></li>
+              <li><span>Crispy pepper pork 椒香酥肉</span><span class="p">18</span></li>
+              <li><span>Spicy fried anchovies 辣炒江鱼仔</span><span class="p">18</span></li>
+              <li><span>Crispy fish skin 酥炸鱼皮</span><span class="p">18</span></li>
+              <li><span>Garlic edamame 蒜香毛豆</span><span class="p">16</span></li>
+              <li><span>Salt and pepper fries 椒盐薯条</span><span class="p">15</span></li>
+              <li><span>Spicy popcorn chicken 辣鸡米花</span><span class="p">15</span></li>
+              <li><span>Cheese lekor 芝士Lekor</span><span class="p">15</span></li>
+              <li><span>Juicy cherry tomatoes 爆汁小番茄</span><span class="p">15</span></li>
+              <li><span>Mini buns with condensed milk 炼乳小馒头</span><span class="p">12</span></li>
+              <li><span>Crunchy cucumber 脆黄瓜</span><span class="p">12</span></li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>Beer and happy hour <span lang="zh">啤酒 · 欢乐时光</span></summary>
+            <p class="sub">Happy hour before 8:30pm, Sunday to Thursday only: buckets (5 bottles) buy 1 free 1; Guinness 10 glasses for RM175. Can’t finish? We keep beer for 30 days.</p>
+            <ul>
+              <li><span>Tiger Crystal bucket (5 bottles) <small>3 buckets 318</small></span><span class="p">118</span></li>
+              <li><span>Tiger bucket (5 bottles) <small>3 buckets 338</small></span><span class="p">128</span></li>
+              <li><span>Heineken bucket (5 bottles) <small>3 buckets 368</small></span><span class="p">138</span></li>
+              <li><span>Guinness, per glass <small>10 glasses 235</small></span><span class="p">32</span></li>
+              <li><span>Tiger carton, 24 × 330ml</span><span class="p">478</span></li>
+              <li><span>Heineken carton, 24 × 330ml</span><span class="p">558</span></li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>Cocktails <span lang="zh">鸡尾酒</span></summary>
+            <ul>
+              <li><span>鲨B <small>alcohol-free 55</small></span><span class="p">65</span></li>
+              <li><span>好运咸鱼</span><span class="p">45</span></li>
+              <li><span>躺平 <small>alcohol-free 35</small></span><span class="p">45</span></li>
+              <li><span>杨枝甘露 <small>alcohol-free 35</small></span><span class="p">45</span></li>
+              <li><span>O椰 <small>alcohol-free 35</small></span><span class="p">45</span></li>
+              <li><span>遇见 <small>alcohol-free 25</small></span><span class="p">35</span></li>
+              <li><span>伯牙绝弦 <small>alcohol-free 25</small></span><span class="p">35</span></li>
+              <li><span>拿拿 <small>alcohol-free 25</small></span><span class="p">35</span></li>
+              <li><span>舔狗 <small>alcohol-free 25</small></span><span class="p">35</span></li>
+              <li><span>柠檬冰茶 <small>alcohol-free 25</small></span><span class="p">35</span></li>
+              <li><span>青提乌龙 <small>alcohol-free 25</small></span><span class="p">35</span></li>
+              <li><span>抹香荔影</span><span class="p">35</span></li>
+              <li><span>夏风</span><span class="p">35</span></li>
+              <li><span>朱砂痣</span><span class="p">35</span></li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>Towers to share <span lang="zh">Tower</span></summary>
+            <ul>
+              <li><span>Bayberry 杨梅无尽</span><span class="p">228</span></li>
+              <li><span>Lychee 多肉荔枝</span><span class="p">178</span></li>
+              <li><span>Grape 葡萄通通</span><span class="p">168</span></li>
+              <li><span>Orange 橙意满满</span><span class="p">128</span></li>
+              <li><span>Pineapple 行运旺来</span><span class="p">128</span></li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>Shots and umeshu <span lang="zh">一口杯 · 梅酒</span></summary>
+            <ul>
+              <li><span>Flaming Lamborghini 火焰兰博基尼</span><span class="p">128</span></li>
+              <li><span>Fresh lime Bacardi 香柠百加得, 6 shots</span><span class="p">120</span></li>
+              <li><span>Jägerbomb 野格炸弹 <small>10 for 188</small></span><span class="p">35</span></li>
+              <li><span>Choya Yuzu 柚子 <small>3 for 888</small></span><span class="p">328</span></li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>Bottles and wine <span lang="zh">洋酒 · 红酒</span></summary>
+            <p class="sub">Price per bottle, then for 2.</p>
+            <ul>
+              <li><span>Kweichow Moutai 贵州茅台 <small>2 for 6,300</small></span><span class="p">3,588</span></li>
+              <li><span>Armand de Brignac Brut Gold <small>2 for 4,600</small></span><span class="p">2,588</span></li>
+              <li><span>Dom Pérignon <small>2 for 3,400</small></span><span class="p">1,888</span></li>
+              <li><span>Hennessy XO <small>2 for 3,000</small></span><span class="p">1,688</span></li>
+              <li><span>Martell Cordon Bleu <small>2 for 2,700</small></span><span class="p">1,488</span></li>
+              <li><span>Johnnie Walker XR 21 <small>2 for 1,950</small></span><span class="p">1,088</span></li>
+              <li><span>The Macallan 12 <small>2 for 1,588</small></span><span class="p">888</span></li>
+              <li><span>Hennessy VSOP <small>2 for 1,150</small></span><span class="p">638</span></li>
+              <li><span>Johnnie Walker Gold Label Reserve <small>2 for 1,150</small></span><span class="p">638</span></li>
+              <li><span>The Singleton 15 <small>this month: 588, the price of the 12</small></span><span class="p">738</span></li>
+              <li><span>The Singleton 12 <small>2 for 1,000</small></span><span class="p">588</span></li>
+              <li><span>Moët &amp; Chandon <small>2 for 1,000 · 6 for 2,800</small></span><span class="p">568</span></li>
+              <li><span>Roku gin <small>2 for 770</small></span><span class="p">428</span></li>
+              <li><span>Carlo Meroni Vendemmia (Italy)</span><span class="p">570</span></li>
+              <li><span>Chianti Classico (Italy)</span><span class="p">450</span></li>
+              <li><span>Don Antonio Primitivo (Italy)</span><span class="p">360</span></li>
+              <li><span>Col Dovigo Rial (Italy)</span><span class="p">250</span></li>
+            </ul>
+          </details>
+          </div>
       </section>
 
       <div class="sec lower">
@@ -646,7 +788,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   <footer>
     <div class="wrap">
       <p>Xianyu 咸鱼酒馆 · <a href="https://instagram.com/xianyu.kl" target="_blank" rel="noopener">@xianyu.kl</a> · <a href="https://play.xianyukl.com/?from=site" data-play><span class="i-en">Join Xianyu Play free</span><span class="i-zh" lang="zh">免费加入 Xianyu Play</span></a></p>
-      <nav id="seo-links" aria-label="More pages"><a href="/mandopop-live-bar-kl/">Mandopop live bar KL</a> · <a href="/bar-taman-desa/">Bar in Taman Desa</a> · <a href="/faq/">FAQ</a></nav>
+      <nav id="seo-links" aria-label="More pages"><a href="/mandopop-live-bar-kl/">Mandopop live bar KL</a> · <a href="/bar-taman-desa/">Bar in Taman Desa</a> · <a href="/birthday-venue-kl/">Birthday &amp; groups</a> · <a href="/happy-hour-kl/">Happy hour</a> · <a href="/faq/">FAQ</a></nav>
       <p>Dojo Group Sdn Bhd (202501016432)</p>
     </div>
 </footer>
