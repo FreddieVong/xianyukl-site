@@ -483,7 +483,10 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
               var big = document.createElement("b"), at = document.createElement("span"), note = document.createElement("small");
               big.textContent = zh() ? "现场乐队" : "Live band";
               at.textContent = (n.date === week.today ? (zh() ? "今晚 · " : "Tonight · ") : date(n.date) + " · ") + clock(n.startTime);
-              note.textContent = zh() ? "歌手即将公布" : "Singers coming soon";
+              // No poster anywhere this week (the app has no gigs up): say the plain nightly line, not "coming soon".
+              var anyPoster = nights.some(function (x) { return x.posterUrl; });
+              note.textContent = anyPoster ? (zh() ? "歌手即将公布" : "Singers coming soon")
+                : (zh() ? "每晚现场音乐，" + clock(CFG.start) + "至" + clock(CFG.end) : "Live music nightly, " + clock(CFG.start) + " to " + clock(CFG.end));
               soon.appendChild(big); soon.appendChild(at); soon.appendChild(note);
               panel.appendChild(soon);
             }
