@@ -27,7 +27,7 @@ WDN = "Mon Tue Wed Thu Fri Sat Sun".split(); MON = "Jan Feb Mar Apr May Jun Jul 
 out = root / "assets/lineup"; out.mkdir(parents=True, exist_ok=True)
 divs, keep = [], set()
 for n in week.get("nights", []):
-    if not n.get("posterUrl"): continue
+    if not n.get("posterUrl") or n.get("privateEvent"): continue
     d = datetime.date.fromisoformat(n["date"]); stem = f"{WD[d.weekday()]}-{d.day}{MO[d.month-1]}"
     im = Image.open(io.BytesIO(get(n["posterUrl"]))).convert("RGB")
     for w in (540, 1024):
