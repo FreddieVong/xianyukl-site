@@ -1,9 +1,0 @@
-{
-  "pid": 8817,
-  "port": 55897,
-  "token": "c5044acc-c2e3-4c7b-890b-7d71bfcf45de",
-  "startedAt": "2026-11-22T11:55:07.729Z",
-  "serverPath": "/home/freddievong/.claude/skills/gstack/browse/src/server.ts",
-  "mode": "launched",
-  "configHash": "303a7eeccc03078b"
-}
