@@ -216,7 +216,7 @@ h2.sec-label{line-height:1.5;letter-spacing:0;margin-top:0}
 .soon.shut{border-style:dashed}
 .share[hidden]{display:none}
 .day.shut b{text-decoration:line-through;text-decoration-thickness:1.5px}
-</style>
+.xmas-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;margin:2px 0 14px;padding:10px 14px;border-radius:12px;background:var(--mist);color:var(--ink);font-size:15px;line-height:1.35;font-weight:500;text-decoration:none}.xmas-bar b{font-weight:700}.xmas-bar .go{color:var(--teal-text);font-weight:700;flex-shrink:0}.xmas-bar:hover{background:var(--line)}</style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -321,6 +321,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
     </header>
 
     <main id="main">
+      <a class="xmas-bar i-en" data-until="2027-01-01T06:00:00+08:00" href="/christmas-new-year/"><span><b>Christmas Eve &amp; New Year's Eve</b> · minimum spend per table · book early</span><span class="go" aria-hidden="true">→</span></a><a class="xmas-bar i-zh" data-until="2027-01-01T06:00:00+08:00" href="/zh/shengdan-kuanian/" lang="zh"><span><b>平安夜和跨年夜</b> · 每桌最低消费 · 早点订位</span><span class="go" aria-hidden="true">→</span></a>
       <section class="tonight" id="week" aria-label="This week's line-up" data-zh-label="本周演出">
         <div class="week">
           <p class="where" id="where"><span class="i-en">Mandopop band 9:30pm · Taman Desa KL</span><span class="i-zh" lang="zh">华语乐队晚上9点半 · Taman Desa</span></p>
@@ -911,5 +912,5 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   </script>
 <script>(function(){var go=function(el){[].forEach.call(el.querySelectorAll("[data-defer]"),function(i){if(i.dataset.srcset)i.srcset=i.dataset.srcset;if(i.dataset.src)i.src=i.dataset.src;i.removeAttribute("data-defer");});};
 [].forEach.call(document.querySelectorAll(".pager-wrap"),function(w){if(!("IntersectionObserver" in window)){go(w);return;}var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){go(w);o.disconnect();}},{rootMargin:"300px"});o.observe(w);});})();</script>
-</body>
+<script>/* Christmas Eve / New Year's Eve links go away by themselves after the night (25 Nov 2026). */document.querySelectorAll("[data-until]").forEach(function(e){if(Date.now()>Date.parse(e.getAttribute("data-until")))e.remove()})</script></body>
 </html>
